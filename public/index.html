@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Travel Planner</title>
+  </head>
+  <div class="home-header-title">we plan, you travel</div>
+  <body>
+    <div class="search-bar-upper">
+      <div class="seg seg-1">
+          <div class="search-input-container">
+              <div class="search-lens">
+                  <i class="fal fa-search" id="iconSearch"></i>
+              </div>
+              <div class="spacer">-</div>
+              <div class="search-input">
+                  <input id="inputSearch" type="text" value="" class="form-control closed" placeholder="Search for a destination or hotel" autocomplete="off">
+              </div>
+          </div>
+      </div>
+      <div class="seg seg-2">
+          <div class="timestamp" id="timestamp">
+              <div class="timestamp-calendar">
+                  <span class="fal fa-calendar"></span>
+              </div>
+              <div class="spacer">-</div>
+              <div class="timestamp-input">
+                  <input type="text" id="timestamp-dp" autocomplete="off" readonly="readonly">
+              </div>
+              <div class="timestamp-interval">
+                  <div id="intervalSelected" class="d-flex align-items-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                      Choose the period (optional)
+                  </font></font></div>
+              </div>
+          </div>
+      </div>
+      <div class="seg seg-3">
+          <div class="search-room-configuration" id="search-room-configuration">
+              <div class="search-room-configuration-user">
+                  <i class="fal fa-user"></i>
+              </div>
+              <div class="spacer">-</div>
+              <div class="search-room-configuration-text">
+                  <div class="config-room"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Choose number of people</font></font></div>
+                  <div class="config-people d-none">2 adulti</div>
+                  <div class="config-separator d-none">+</div>
+                  <div class="config-people d-none">0 copii</div>
+              </div>
+          </div>
+      </div>
+      <div class="seg seg-4">
+          <a class="search-button" id="search-button"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+              Search
+          </font></font></a>
+      </div>
+  </div>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
