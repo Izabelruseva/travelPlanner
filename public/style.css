@@ -4,3 +4,10 @@
 <style>
 .our-advantages__wrapper {
 }
+.w-search-bar .search-bar .search-bar-upper {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
