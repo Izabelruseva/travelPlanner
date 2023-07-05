@@ -61,10 +61,14 @@ body {
     
 }
 html {
+    
     font-family: sans-serif;
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.board {
+    background-image: url("	https://media.istockphoto.com/id/1201074493/vector…20&c=ujaqgEislMBUNKnsduKbSjl9mUhDo-V_zcpFQYICpVs=");
 }
 *, :after, :before {
     box-sizing: border-box;
