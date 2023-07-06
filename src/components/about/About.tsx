@@ -19,3 +19,4 @@ class About extends React.Component<RouteComponentProps<About>, {}> {
 }
 
 export default About;
+
