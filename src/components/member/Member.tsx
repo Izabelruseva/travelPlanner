@@ -15,8 +15,8 @@ class Member extends React.Component<IProps, {}> {
     const memberModel: MemberModel | null = this.props.memberModel;
 
     return(
-      <div>
-        <h2>{ memberModel ? memberModel.getId() + ' / ' + memberModel.getName() : 'no member' }</h2>
+      <div className='pics'>
+        <h2 className='like-btn'>{ memberModel ? memberModel.getId() + ' / ' + memberModel.getName() : 'no member' }</h2>
       </div>
     );
   }

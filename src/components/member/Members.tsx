@@ -20,9 +20,9 @@ class Members extends React.Component<RouteComponentProps<Members>, IState> {
   private makeSampleMemberModels = (): MemberModel[] => {
       const arrMembers: MemberModel[] = [];
       
-      arrMembers.push( new MemberModel( 0, 'justin' ) );
-      arrMembers.push( new MemberModel( 1, 'leo' ) );
-      arrMembers.push( new MemberModel( 2, 'ji' ) );
+      arrMembers.push( new MemberModel( 0, 'Trip to Varna' ) );
+      arrMembers.push( new MemberModel( 1, 'Trip to Stara Zagora' ) );
+      arrMembers.push( new MemberModel( 2, 'Trip to Ruse' ) );
 
       return arrMembers;
   }
