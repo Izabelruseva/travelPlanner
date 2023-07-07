@@ -4,6 +4,7 @@ import MemberModel from '../../models/MemberModel';
 import { Link } from 'react-router-dom';
 import { RouterPathEnum } from '../../enums/RouterPathEnum';
 import Member from './Member';
+import 'src/components/member/member.css'
 
 interface IState {
     memberModelList: MemberModel[];
@@ -48,12 +49,12 @@ class Members extends React.Component<RouteComponentProps<Members>, IState> {
 
   render() {
     return(
-      <div>
-        <h2>Members</h2>
-        <ul>
+      <div className='members-page'>
+        <h2 className='members-heading'>See what other experienced:</h2>
+        <ul className='links-all'>
         { this.state.memberModelList.map( ( model: MemberModel, idx: number ) => {
             return ( 
-                <li key={ idx }>
+                <li className='links' key={ idx }>
                     <Link to={ this.props.match.url + '/' + idx }>
                         { model.getName() }
                     </Link>

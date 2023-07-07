@@ -38,9 +38,21 @@
     -webkit-text-fill-color: transparent;
 }
 @media screen and (max-width: 555px){
-    .home-all{
-        /* padding: 10px 20px; */
+    .page-home{
+        padding: 10px 20px;
     }
 }
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+*::-webkit-scrollbar {
+    display: none;
+  }
 
 

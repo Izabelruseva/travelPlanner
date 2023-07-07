@@ -34,11 +34,11 @@ class Home extends React.Component<RouteComponentProps<Home>, {}> {
         <h2 className='home-heading'>Hi there, are you ready to start a new adventure?</h2>
         
         <p className='home-text'>To begin log in </p>
-        <button onClick={ ( e: any ) => this.onClickMove( RouterPathEnum.ABOUT ) }>
+        <button className='btn' onClick={ ( e: any ) => this.onClickMove( RouterPathEnum.ABOUT ) }>
             log in
         </button>
         &nbsp;
-        <button onClick={ ( e: any ) => this.onClickMove( RouterPathEnum.MEMBER ) }>
+        <button className='btn' onClick={ ( e: any ) => this.onClickMove( RouterPathEnum.MEMBER ) }>
             See other's trip ideas
         </button>
         </p>

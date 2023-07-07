@@ -2,9 +2,9 @@
 .ulContainer {
     background-image: linear-gradient(to right, #00FFFF, #ffae42);
     box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
-    width: 97%;
+    
     height: 60px;
-    border-radius: 10px;
+    border-radius: 30px;
     display: flex;
     padding-left: 5%;
     align-items: center;
@@ -56,4 +56,19 @@
     border-radius: 13px;
     font-size: 2rem;
     font-weight: bold;
+}
+
+* {
+  
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }
