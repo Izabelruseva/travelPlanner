@@ -87,3 +87,40 @@
     width: 9em;
   
   }
+  .ulContainer li {
+    display: inline-block;
+    margin-right: 20px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .ulContainer li:last-child {
+    margin-right: 0;
+  }
+  
+  .ulContainer li::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .ulContainer li:hover::after {
+    transform: scaleX(1);
+  }
+  
+  .ulContainer li a {
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .ulContainer li:hover a {
+    color: #fff;
+  }
+  
