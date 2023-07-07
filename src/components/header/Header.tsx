@@ -10,12 +10,15 @@ class Header extends React.Component<React.Props<Header>, {}> {
 
   render() {
     return(
+      <div>
       <ul className='ulContainer'>
-        <li><Link to={ RouterPathEnum.HOME }>home</Link></li>
-        <li><Link to={ RouterPathEnum.ABOUT }>about</Link></li>
-        <li><Link to={ RouterPathEnum.MEMBER }>member</Link></li>
+      <p className='navHeading'>Travel Planner</p>
+        <li><Link to={ RouterPathEnum.HOME }>Home</Link></li>
+        <li><Link to={ RouterPathEnum.ABOUT }>Become a part of our team</Link></li>
+        <li><Link to={ RouterPathEnum.MEMBER }>Happy clients</Link></li>
         <li><Link to={ RouterPathEnum.CREATE_TRIP }>Create Trip</Link></li>
       </ul>
+      </div>
     );
   }
 }

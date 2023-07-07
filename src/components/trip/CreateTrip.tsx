@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import 'src\components\trip\style.css'
+import 'src/components/trip/style.css'
 
 class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
   constructor(props : RouteComponentProps<CreateTrip>){
@@ -10,17 +10,16 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
 
   render() {
     return (
-       <>
-        
-        <div className="board" style={{ backgroundImage: "url('https://familyvacationist.com/wp-content/uploads/2…-Yellowstone-National-Park-Photo-Shutterstock.jpg')" }} </div>
-        <div
-        className="home-header-title">We plan, you travel
-        </div>
+      <> 
+        <div>
+          <h1 className='heading'>We plan you travel</h1> 
+          <p className='text'>Choose your dates</p>
+          </div>
         </>
         
         
-    )
+    );
   }
-  
+}
   export default CreateTrip;
   

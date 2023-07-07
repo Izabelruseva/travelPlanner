@@ -8,8 +8,10 @@ class About extends React.Component<RouteComponentProps<About>, {}> {
 
   render() {
     return(
-      <div>
-        <h2>about</h2>
+      <div className='about-all'>
+        <h2 className='about-heading'>We are happy to have you interested in becoming part of our team😊</h2>
+        <p className='about-text'>You are a few steps away from starting the experience</p>
+        <p className='about-text'>dddd</p>
         <button onClick={ ( e: any ) => this.props.history.goBack() }>
             go back
         </button>

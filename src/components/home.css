@@ -1,0 +1,46 @@
+
+.page-home {
+    background-image: url("https://webneel.com/wallpaper/sites/default/files/images/08-2018/3-nature-wallpaper-mountain.jpg");
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;  
+}
+.home-all{
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;  
+}
+.home-heading{
+    font-size: 3rem;
+    font-weight: 800;
+    background: #fff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.home-text{
+    width: 97%;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    padding-left: 30%;
+    align-items: center;
+    
+    padding: 20 20px;
+    font-size: 1rem;
+    font-weight: 800;
+    background: #fff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+@media screen and (max-width: 555px){
+    .home-all{
+        /* padding: 10px 20px; */
+    }
+}
+
+
