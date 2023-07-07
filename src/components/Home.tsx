@@ -3,23 +3,6 @@ import { RouteComponentProps } from 'react-router';
 import { RouterPathEnum } from '../enums/RouterPathEnum';
 import 'src/components/home.css'
 
-const options = [
-  { value: 'New York', label: 'New York' },
-  { value: 'Las Vegas', label: 'Las Vegas' },
-  { value: 'Rome', label: 'Rome' },
-  { value: 'Paris', label: 'Paris' },
-  { value: 'London', label: 'London' },
-  { value: 'Dubai', label: 'Dubai' },
-  { value: 'Barcelona', label: 'Barcelona' },
-  { value: 'Madrid', label: 'Madrid' },
-  { value: 'Singapore', label: 'Singapore' },
-  { value: 'Venice', label: 'Venice' },
-  { value: 'Milan', label: 'Milan' },
-  { value: 'Naples', label: 'Naples' },
-  { value: 'Budapest', label: 'Budapest' },
-  { value: 'Edinburg', label: 'Edinburg' },
-  { value: 'Florence', label: 'Florence' }
-];
 
 
 class Home extends React.Component<RouteComponentProps<Home>, {}> {
@@ -37,7 +20,7 @@ class Home extends React.Component<RouteComponentProps<Home>, {}> {
         <button className='btn' onClick={ ( e: any ) => this.onClickMove( RouterPathEnum.ABOUT ) }>
             log in
         </button>
-        &nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;
         <button className='btn' onClick={ ( e: any ) => this.onClickMove( RouterPathEnum.MEMBER ) }>
             See other's trip ideas
         </button>
