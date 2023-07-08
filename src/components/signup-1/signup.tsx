@@ -1,75 +1,90 @@
-import * as React from 'react';
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import { RouteComponentProps } from 'react-router';
 import "src/signup-1/styles.css";
-import logo from "src/components/signup-1/logo.svg";
+class Signup extends React.Component<RouteComponentProps<signup>, {}> {
+  constructor(props : RouteComponentProps<About>){
+    super(props);
+  }
 
-const strengthLabels = ["weak", "medium", "strong"];
+
+const usernames = ["joe", "joe1", "joe2"];
+
+const useDebounce = (value: string, delay: number) => {
+  const [debouncedValue, setDebouncedValue] = useState<string>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+};
+
+type UsernameProps = {
+  isValid: boolean;
+  isLoading: boolean;
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+};
+
+const Username: FC<UsernameProps> = ({ isValid, isLoading, handleChange }) => {
+  return (
+    <>
+      <div className="username">
+        <input
+          onChange={handleChange}
+          autoComplete="off"
+          spellCheck="false"
+          className="control"
+          type="email"
+          placeholder="Username"
+        />
+        <div className={`spinner ${isLoading ? "loading" : ""}`}></div>
+      </div>
+      <div className={`validation ${!isValid ? "invalid" : ""}`}>
+        Username already taken
+      </div>
+    </>
+  );
+};
 
 export const Signup = () => {
-  const [strength, setStrength] = useState("");
+  const [username, setUsername] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
-  const getStrength = (password: string) => {
-    console.log(password);
+  const debouncedUsername = useDebounce(username, 500);
 
-    let strengthIndicator: number = -1;
-
-    let upper = false,
-      lower = false,
-      numbers = false;
-
-    for (let index = 0; index < password.length; index++) {
-      let char = password.charCodeAt(index);
-      if (!upper && char >= 65 && char <= 90) {
-        upper = true;
-        strengthIndicator++;
-      }
-
-      if (!numbers && char >= 48 && char <= 57) {
-        numbers = true;
-        strengthIndicator++;
-      }
-
-      if (!lower && char >= 97 && char <= 122) {
-        lower = true;
-        strengthIndicator++;
-      }
-    }
-
-    setStrength(strengthLabels[strengthIndicator] ?? "");
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsLoading(true);
+    setUsername(e.target.value);
   };
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
-    getStrength(event.target.value);
+  useEffect(() => {
+    setIsValid(!usernames.some((u) => u === debouncedUsername));
+    setIsLoading(false);
+  }, [debouncedUsername]);
 
   return (
-    <div className="login-card">
+    <div className="card">
       <img src={logo} />
       <h2>Sign Up</h2>
-      <form className="login-form">
-        <div className="username">
-          <input
-            autoComplete="off"
-            spellCheck="false"
-            className="control"
-            type="email"
-            placeholder="Email"
-          />
-          <div id="spinner" className="spinner"></div>
-        </div>
+      <form className="form">
+        <Username
+          isLoading={isLoading}
+          isValid={isValid}
+          handleChange={handleChange}
+        />
         <input
           name="password"
           spellCheck="false"
           className="control"
-          type="password"
           placeholder="Password"
-          onChange={handleChange}
         />
-
-        <div className={`bars ${strength}`}>
-          <div></div>
-        </div>
-        <div className="strength">{strength && <>{strength} password</>}</div>
-        <button className="control" type="button">
+        <button disabled={!isValid} className="control" type="button">
           JOIN NOW
         </button>
       </form>
