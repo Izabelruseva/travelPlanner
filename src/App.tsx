@@ -5,8 +5,10 @@ import Home from './components/Home';
 import About from './components/about/About';
 import HeaderSmall from './components/header/HeaderSmall';
 import CreateTrip from './components/trip/CreateTrip';
+import { signup } from "./components/sinup-1/Signup";
 import { RouterPathEnum } from './enums/RouterPathEnum';
 import Members from './components/member/Members';
+
 
 interface IState {
   isSmallScreen: boolean;
@@ -42,6 +44,7 @@ class App extends React.Component<{}, IState> {
             <Route path={RouterPathEnum.MEMBER} component={Members}/>
             <Route path={RouterPathEnum.CREATE_TRIP} component={CreateTrip}/>
             <Redirect to={RouterPathEnum.HOME} />
+            <Route path={RouterPathEnum.Signup} component={signup-1}/>
           </Switch>
         </div>
       </BrowserRouter>
