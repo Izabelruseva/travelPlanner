@@ -5,7 +5,7 @@ import Home from './components/Home';
 import About from './components/about/About';
 import HeaderSmall from './components/header/HeaderSmall';
 import CreateTrip from './components/trip/CreateTrip';
-import { signup } from "./components/sinup-1/Signup";
+import  signup from "./components/signup-1/signup";
 import { RouterPathEnum } from './enums/RouterPathEnum';
 import Members from './components/member/Members';
 
