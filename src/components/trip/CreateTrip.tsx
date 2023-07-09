@@ -22,6 +22,7 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
                 <input type="text" className="search__input search_input_from" autoComplete="on" />
                   <button className='btn' onClick={ ( e: any ) => this.onClickMove( RouterPathEnum.MEMBER ) }>See other's trip ideas
                   </button>
+                  
                 </div>
               
           </form>

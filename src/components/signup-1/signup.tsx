@@ -1,13 +1,15 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import { RouteComponentProps } from 'react-router';
 import "src/signup-1/styles.css";
-class Signup extends React.Component<RouteComponentProps<signup>, {}> {
-  constructor(props : RouteComponentProps<About>){
+
+class signup extends React.Component<RouteComponentProps<signup>, {}> {
+  constructor(props : RouteComponentProps<signup>){
     super(props);
   }
 
 
-const usernames = ["joe", "joe1", "joe2"];
+
+const usernames = ["izi", "ivan", "martin"];
 
 const useDebounce = (value: string, delay: number) => {
   const [debouncedValue, setDebouncedValue] = useState<string>(value);
@@ -91,3 +93,5 @@ export const Signup = () => {
     </div>
   );
 };
+}
+export default signup;
