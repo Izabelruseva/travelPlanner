@@ -48,24 +48,6 @@ class About extends React.Component<RouteComponentProps<About>, {}> {
               </button>
             </form>
           </span>
-          <form className="login">
-            <label className="search__label">Enter your name</label>
-            <input
-              type="name"
-              className="name-input"
-              autoCapitalize="off"
-              autoComplete="off"
-              placeholder="First Name"
-            />
-            <label className="search__label">Password</label>
-            <input
-              type="password"
-              className="pass-input"
-              autoCapitalize="off"
-              autoComplete="off"
-              placeholder="********"
-            />
-          </form>
         </div>
       </div>
     );
