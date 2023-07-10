@@ -42,7 +42,6 @@ class About extends React.Component<RouteComponentProps<About>, {}> {
                   className="input"
                   autoComplete="off"
                 />
-
                 <button
                   className="btn"
                   onClick={(e: any) => this.props.history.goBack()}
@@ -50,6 +49,7 @@ class About extends React.Component<RouteComponentProps<About>, {}> {
                   Join me!😊
                 </button>
               </div>
+
               <button
                 className="btn"
                 onClick={(e: any) => this.props.history.goBack()}
