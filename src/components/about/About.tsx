@@ -1,13 +1,11 @@
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 import "src/components/about/about.css";
-import React, { iseState } from "react";
 
 class About extends React.Component<RouteComponentProps<About>, {}> {
   constructor(props: RouteComponentProps<About>) {
     super(props);
   }
-  const;
 
   render() {
     return (
