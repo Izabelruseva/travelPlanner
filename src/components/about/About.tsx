@@ -34,14 +34,14 @@ class About extends React.Component<RouteComponentProps<About>, {}> {
                   type="text"
                   name="name"
                   id="name"
-                  className="name-input"
+                  className="input"
                   autoComplete="off"
                 />
                 <label className="password-label">Choose a password</label>
                 <input
                   type="password"
                   placeholder="*******"
-                  className="password-input"
+                  className="input"
                   autoComplete="off"
                 />
                 <button className="btn">Join me!😊</button>

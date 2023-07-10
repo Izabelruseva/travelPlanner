@@ -25,9 +25,17 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
                   </label>
                   <input
                     type="text"
+                    placeholder="From:"
                     className="search__input search_input_from"
                     autoComplete="on"
                   />
+                  <input
+                    type="text"
+                    placeholder="To:"
+                    className="search__input search_input_from"
+                    autoComplete="on"
+                  />
+
                   <button
                     className="btn"
                     onClick={(e: any) =>
