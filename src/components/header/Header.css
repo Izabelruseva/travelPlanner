@@ -10,6 +10,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
+    z-index: 999;
   }
   
   .ulContainer li {

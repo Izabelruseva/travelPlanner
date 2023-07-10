@@ -28,7 +28,7 @@ class Home extends React.Component<RouteComponentProps<Home>, {}> {
               className="btn"
               onClick={(e: any) => this.onClickMove(RouterPathEnum.MEMBER)}
             >
-              See other's trip ideas
+              See trip ideas
             </button>
           </span>
         </p>

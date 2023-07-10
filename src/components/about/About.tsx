@@ -18,22 +18,20 @@ class About extends React.Component<RouteComponentProps<About>, {}> {
             <p className="about-text">
               You are a few steps away from starting the experience
             </p>
-          </span>
-          <span className="about-text-span">
             <p className="about-text">
               Turn your road trip into an adventure.By becoming part of our
               family you will be able to save ideas for your future trip{" "}
             </p>
           </span>
-
           <span className="about-text-span">
             <form data-tab="credentials" className="credentials">
-              <div className="name">
+              <div>
                 <label className="name__label">What is your name?</label>
                 <input
                   type="text"
                   name="name"
                   id="name"
+                  placeholder="First name"
                   className="input"
                   autoComplete="off"
                 />
@@ -44,6 +42,7 @@ class About extends React.Component<RouteComponentProps<About>, {}> {
                   className="input"
                   autoComplete="off"
                 />
+
                 <button
                   className="btn"
                   onClick={(e: any) => this.props.history.goBack()}
