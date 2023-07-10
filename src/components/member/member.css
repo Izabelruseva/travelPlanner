@@ -36,6 +36,18 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.span-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #6c92e4;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #6c92e4;
+}
 @media screen and (max-width: 555px){
     .trip-page{
         padding: 10px 20px;

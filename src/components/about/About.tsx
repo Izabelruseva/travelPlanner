@@ -30,7 +30,13 @@ class About extends React.Component<RouteComponentProps<About>, {}> {
             <form data-tab="credentials" className="credentials">
               <div className="name">
                 <label className="name__label">What is your name?</label>
-                <input type="text" className="name-input" autoComplete="off" />
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  className="name-input"
+                  autoComplete="off"
+                />
                 <label className="password-label">Choose a password</label>
                 <input
                   type="password"
@@ -53,5 +59,8 @@ class About extends React.Component<RouteComponentProps<About>, {}> {
     );
   }
 }
+const myFun = function () {
+  console.log(10);
+};
 
 export default About;
