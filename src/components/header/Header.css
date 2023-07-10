@@ -1,73 +1,72 @@
-
 .ulContainer {
-    background-image: linear-gradient(to right, #00FFFF, #ffae42);
-    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
-    
-    height: 60px;
-    border-radius: 30px;
-    display: flex;
-    padding-left: 5%;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    z-index: 999;
-  }
-  
-  .ulContainer li {
-    display: inline-block;
-    margin-right: 20px;
-    position: relative;
-    cursor: pointer;
-  }
-  
-  .ulContainer li:last-child {
-    margin-right: 0;
-  }
-  
-  .ulContainer li::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #000;
-    transform: scaleX(0);
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .ulContainer li:hover::after {
-    transform: scaleX(1);
-  }
-  
-  .ulContainer li a {
-    color: #000;
-    text-decoration: none;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .ulContainer li:hover a {
-    color: #fff;
-  }
-  
-.navHeading{
-    font-size: 24px;
+  background-image: linear-gradient(to right, #00FFFF, #ffae42);
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
+
+  height: 60px;
+  border-radius: 30px;
+  display: flex;
+  padding-left: 5%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 999;
+}
+
+.ulContainer li {
+  display: inline-block;
+  margin-right: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.ulContainer li:last-child {
+  margin-right: 0;
+}
+
+.ulContainer li::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.ulContainer li:hover::after {
+  transform: scaleX(1);
+}
+
+.ulContainer li a {
+  color: #000;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.ulContainer li:hover a {
+  color: #fff;
+}
+
+.navHeading {
+  font-size: 24px;
   color: #fff;
   margin: 0;
-    border-radius: 13px;
-    font-size: 2rem;
-    font-weight: bold;
+  border-radius: 13px;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 * {
-  
+
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: sans-serif;
 
-  -ms-overflow-style: none; 
-  scrollbar-width: none; 
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 *::-webkit-scrollbar {

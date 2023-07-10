@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 class HeaderSmall extends React.Component<React.Props<HeaderSmall>, {}> {
-  constructor(props : React.Props<HeaderSmall>){
+  constructor(props: React.Props<HeaderSmall>) {
     super(props);
   }
 
   render() {
-    return(
+    return (
       <div>
         ≡ menu
       </div>

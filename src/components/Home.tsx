@@ -3,6 +3,8 @@ import { RouteComponentProps } from "react-router";
 import { RouterPathEnum } from "../enums/RouterPathEnum";
 import "src/components/home.css";
 
+import { registerUser } from "src/requests/user";
+
 class Home extends React.Component<RouteComponentProps<Home>, {}> {
   constructor(props: RouteComponentProps<Home>) {
     super(props);
@@ -37,6 +39,7 @@ class Home extends React.Component<RouteComponentProps<Home>, {}> {
   }
 
   private onClickMove = (routerPathEnum: RouterPathEnum) => {
+    registerUser({ firstName: "Kaloyan", lastName: "Dimitrov", password: "123", email: "test@test.bg" });
     this.props.history.push(routerPathEnum);
   };
 }

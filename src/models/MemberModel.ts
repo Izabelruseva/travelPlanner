@@ -1,8 +1,8 @@
 class MemberModel {
     private _id: number;
     private _name: string;
-    
-    constructor( nId: number, strName: string ) {
+
+    constructor(nId: number, strName: string) {
         this._id = nId;
         this._name = strName;
     }

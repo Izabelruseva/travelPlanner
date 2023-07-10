@@ -4,5 +4,5 @@ export enum RouterPathEnum {
     ABOUT = '/about',
     MEMBER = '/member',
     CREATE_TRIP = '/trip/create'
-    
+
 }
