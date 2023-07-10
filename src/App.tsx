@@ -5,7 +5,7 @@ import Home from './components/Home';
 import About from './components/about/About';
 import HeaderSmall from './components/header/HeaderSmall';
 import CreateTrip from './components/trip/CreateTrip';
-import { signup } from "./components/signup-1/signup";
+import { Signup } from "./components/signup-1/Signup";
 import { RouterPathEnum } from './enums/RouterPathEnum';
 import Members from './components/member/Members';
 
@@ -44,7 +44,7 @@ class App extends React.Component<{}, IState> {
             <Route path={RouterPathEnum.MEMBER} component={Members}/>
             <Route path={RouterPathEnum.CREATE_TRIP} component={CreateTrip}/>
             <Redirect to={RouterPathEnum.HOME} />
-            <Route path={RouterPathEnum.SIGNUP} component={signup}/>
+            <Route path={RouterPathEnum.SIGNUP} component={Signup}/>
           </Switch>
         </div>
       </BrowserRouter>

@@ -14,7 +14,7 @@ class Home extends React.Component<RouteComponentProps<Home>, {}> {
     return(
       <div className='page-home'>
         <p className='home-all'>
-        <h2 className='home-heading'>Hi there, are you ready to start a new adventure?</h2>
+        <h2 className='home-heading' style={{backgroundColor: "lightblue"}}>Hi there, are you ready to start a new adventure?</h2>
         
         <p className='home-text'>To begin log in </p>
         <button className='btn' onClick={ ( e: any ) => this.onClickMove( RouterPathEnum.ABOUT ) }>

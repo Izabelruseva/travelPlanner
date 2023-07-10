@@ -1,14 +1,10 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import "src/signup-1/styles.css";
+import 'src/components/signup-1/styles.css';
 
-type UsernameProps = {
-  isValid: boolean;
-  isLoading: boolean;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-};
-class signup extends React.Component<RouteComponentProps<signup>, {}> {
-  constructor(props : RouteComponentProps<signup>){
+
+export class Signup extends React.Component<RouteComponentProps<Signup>, {}> {
+  constructor(props : RouteComponentProps<Signup>){
     super(props);
   }
 
@@ -31,6 +27,11 @@ const useDebounce = (value: string, delay: number) => {
   return debouncedValue;
 };
 
+  UsernameProps = {
+    isValid: boolean,
+    isLoading: boolean,
+    handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  };
 
 
 const Username: FC<UsernameProps> = ({ isValid, isLoading, handleChange }) => {
@@ -53,8 +54,7 @@ const Username: FC<UsernameProps> = ({ isValid, isLoading, handleChange }) => {
     </>
   );
 };
-
-export const Signup = () => {
+ const Signup = () => {
   const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isValid, setIsValid] = useState(false);
@@ -95,4 +95,3 @@ export const Signup = () => {
   );
 };
 }
-export default signup;
