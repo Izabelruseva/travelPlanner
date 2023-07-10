@@ -1,7 +1,12 @@
-import { ChangeEvent, FC, useEffect, useState } from "react";
+import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import "src/signup-1/styles.css";
 
+type UsernameProps = {
+  isValid: boolean;
+  isLoading: boolean;
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+};
 class signup extends React.Component<RouteComponentProps<signup>, {}> {
   constructor(props : RouteComponentProps<signup>){
     super(props);
@@ -26,11 +31,7 @@ const useDebounce = (value: string, delay: number) => {
   return debouncedValue;
 };
 
-type UsernameProps = {
-  isValid: boolean;
-  isLoading: boolean;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-};
+
 
 const Username: FC<UsernameProps> = ({ isValid, isLoading, handleChange }) => {
   return (
