@@ -1,5 +1,6 @@
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
+import { RouterPathEnum } from "src/enums/RouterPathEnum";
 import "src/components/about/about.css";
 
 class About extends React.Component<RouteComponentProps<About>, {}> {
@@ -44,7 +45,7 @@ class About extends React.Component<RouteComponentProps<About>, {}> {
                 />
                 <button
                   className="btn"
-                  onClick={(e: any) => this.props.history.goBack()}
+                  onClick={(e: any) => this.onClickbtn(RouterPathEnum.MEMBER)}
                 >
                   Join me!😊
                 </button>
@@ -62,6 +63,10 @@ class About extends React.Component<RouteComponentProps<About>, {}> {
       </div>
     );
   }
+  private onClickbtn = (routerPathEnum: RouterPathEnum) => {
+    this.props.history.push(routerPathEnum);
+    console.log(`("name").value`);
+  };
 }
 
 export default About;
