@@ -21,6 +21,7 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
                   <label className="search__label">
                     Where do you want to go?
                   </label>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
                   <input
                     type="text"
                     placeholder="From:"
@@ -33,7 +34,7 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
                     className="search__input search_input_from"
                     autoComplete="on"
                   />
-
+                  &nbsp;&nbsp;&nbsp;&nbsp;
                   <button
                     className="btn"
                     onClick={(e: any) =>
