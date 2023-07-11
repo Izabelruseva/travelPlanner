@@ -104,7 +104,6 @@ class Members extends React.Component<RouteComponentProps<Members>, IState> {
               <span className="span-img">
                 <img src={require("src/components/member/pics/1.ico")} />
                 <img src={require("src/components/member/pics/2.ico")} />
-                <img src={require("src/components/member/pics/3.ico")} />
                 <img src={require("src/components/member/pics/4.ico")} />
               </span>
             </span>
