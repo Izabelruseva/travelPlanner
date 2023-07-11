@@ -131,7 +131,7 @@ class About extends React.Component<RouteComponentProps<About>, State> {
 
             <button
               className="btn"
-              onClick={(e: any) => this.props.history.goBack()}
+              onClick={(e: any) => this.onClickbtn(RouterPathEnum.HOME)}
             >
               Go to home page to know more about us✈
             </button>
