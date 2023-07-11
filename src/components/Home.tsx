@@ -43,6 +43,32 @@ class Home extends React.Component<RouteComponentProps<Home>, {}> {
                 See trip ideas
               </button>
             </span>
+            <span>
+              <div className="info">Who we are</div>
+              <p className="info-text">
+                We are a passionate team of travel enthusiasts, driven by our
+                love for exploration and our desire to make travel planning an
+                effortless and enjoyable experience for everyone. With years of
+                collective experience in the travel industry, we have
+                established ourselves as a reliable source of inspiration and
+                guidance for travelers worldwide.
+              </p>
+              <p className="info-text">
+                Welcome to our travel planner website, where your dream
+                destinations become a reality. Whether you're an avid explorer
+                seeking new adventures or a leisure traveler in search of
+                relaxation, our platform is here to simplify and enhance your
+                travel experience. With a vast array of meticulously curated
+                itineraries, insider tips, and personalized recommendations, we
+                are dedicated to helping you create unforgettable journeys
+                tailored to your unique preferences. From discovering hidden
+                gems in exotic locations to planning seamless logistics for your
+                trips, we're your trusted companion every step of the way. Get
+                ready to embark on a world of possibilities and let us guide you
+                towards extraordinary travel experiences. Start planning your
+                next adventure with us today!
+              </p>
+            </span>
           </p>
         </div>
       </>
