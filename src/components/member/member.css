@@ -16,13 +16,14 @@
 }
 .members-heading{
     
+    padding-top: 10px;
     font-size: 2rem;
     font-weight: 800;
     background: #fff;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-/* .members-text{
+.members-text{
     width: 90%;
     height: 60px;
     border-radius: 10px;
@@ -35,7 +36,19 @@
     background: linear-gradient(to right, #00FFFF, #ffae42);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-} */
+}
+.members-span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
 .span-links{
     display: flex;
     justify-content: center;

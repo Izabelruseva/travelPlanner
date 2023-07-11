@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { RouterPathEnum } from "../../enums/RouterPathEnum";
 import Member from "./Member";
 import "src/components/member/member.css";
+import "src/components/member/pics/1.ico";
 
 interface IState {
   memberModelList: MemberModel[];
@@ -56,8 +57,16 @@ class Members extends React.Component<RouteComponentProps<Members>, IState> {
     return (
       <div className="members-page">
         <h2 className="members-heading">
-          Discover your next favorite destination
+          You’re always a short detour from an Extraordinary Place
         </h2>
+        <span className="members-span">
+          <p className="members-text">
+            Our collection of more than 300 Extraordinary Places will take your
+            trip to the next level. Look for the illustrations on our maps and
+            read our takes on what make these places so special. We’ve been
+            there, and we think you should go, too.
+          </p>
+        </span>
         <span className="span-links">
           <ul className="links-all">
             {this.state.memberModelList.map(
@@ -81,6 +90,12 @@ class Members extends React.Component<RouteComponentProps<Members>, IState> {
               )}
             />
           </Switch>
+        </span>
+        <span>
+          <img src={require("src/components/member/pics/1.ico")} />
+          <img src={require("src/components/member/pics/2.ico")} />
+          <img src={require("src/components/member/pics/3.ico")} />
+          <img src={require("src/components/member/pics/4.ico")} />
         </span>
       </div>
     );
