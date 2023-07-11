@@ -34,6 +34,11 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.trip-info{
+    
+    color: white;
+    
+}
 .trip-text{
     width: 90%;
     height: 60px;
