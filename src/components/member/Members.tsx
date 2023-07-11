@@ -61,6 +61,7 @@ class Members extends React.Component<RouteComponentProps<Members>, IState> {
             className="background"
             src={require("src/components/member/pics/background.ico")}
           />
+          <div className="welcome-message">Welcome back, ....</div>
           <div className="members-all">
             <h2 className="members-heading">
               You’re always a short detour from an Extraordinary Place

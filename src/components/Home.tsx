@@ -21,7 +21,16 @@ class Home extends React.Component<RouteComponentProps<Home>, {}> {
               Hi there, are you ready to start a new adventure?
             </h2>
             <span className="home-text-span">
-              <p className="home-text">To begin log in </p>
+              <p className="home-text">
+                To begin log in or create new account{" "}
+              </p>
+              <button
+                className="btn"
+                onClick={(e: any) => this.onClickMove(RouterPathEnum.ABOUT)}
+              >
+                sign up
+              </button>
+              &nbsp;&nbsp;&nbsp;&nbsp;
               <button
                 className="btn"
                 onClick={(e: any) => this.onClickMove(RouterPathEnum.ABOUT)}
