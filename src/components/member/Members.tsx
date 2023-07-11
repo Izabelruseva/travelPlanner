@@ -6,16 +6,30 @@ import { RouterPathEnum } from "../../enums/RouterPathEnum";
 import Member from "./Member";
 import "src/components/member/member.css";
 import "src/components/member/pics/1.ico";
+import { getUserProfile } from "src/requests/user";
 
 interface IState {
   memberModelList: MemberModel[];
+  firstName: string | null;
 }
 
 class Members extends React.Component<RouteComponentProps<Members>, IState> {
   constructor(props: RouteComponentProps<Members>) {
     super(props);
 
-    this.state = { memberModelList: this.makeSampleMemberModels() };
+    this.state = {
+      memberModelList: this.makeSampleMemberModels(),
+      firstName: null,
+    };
+  }
+
+  async componentDidMount() {
+    try {
+      const profile = await getUserProfile();
+      this.setState({ firstName: profile.firstName });
+    } catch (error) {
+      console.error("Failed to fetch user profile:", error);
+    }
   }
 
   private makeSampleMemberModels = (): MemberModel[] => {
@@ -54,6 +68,7 @@ class Members extends React.Component<RouteComponentProps<Members>, IState> {
   };
 
   render() {
+    const { firstName } = this.state;
     return (
       <>
         <div className="members-page">
@@ -61,7 +76,10 @@ class Members extends React.Component<RouteComponentProps<Members>, IState> {
             className="background"
             src={require("src/components/member/pics/background.ico")}
           />
-          <div className="welcome-message">Welcome back, ....</div>
+          <div className="welcome-message">
+            Welcome back, {firstName ? firstName : "Loading..."}
+          </div>
+
           <div className="members-all">
             <h2 className="members-heading">
               You’re always a short detour from an Extraordinary Place
