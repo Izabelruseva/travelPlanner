@@ -4,10 +4,6 @@ import './Header.css';
 import { RouterPathEnum } from '../../enums/RouterPathEnum';
 
 class Header extends React.Component<React.Props<Header>, {}> {
-  constructor(props: React.Props<Header>) {
-    super(props);
-  }
-
   render() {
     return (
       <div>

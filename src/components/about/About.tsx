@@ -33,12 +33,28 @@ class About extends React.Component<RouteComponentProps<About>, State> {
     });
   };
 
+  onClickJoin = async (routerPathEnum: RouterPathEnum) => {
+    const { firstName, lastName, email, password } = this.state;
+
+    await registerUser({ email, password, firstName, lastName });
+
+    this.props.history.push(routerPathEnum);
+  };
+
+  onClickSignIn = async (routerPathEnum: RouterPathEnum) => {
+    const { loginEmail, loginPassword } = this.state;
+
+    await loginUser({ email: loginEmail, password: loginPassword });
+
+    this.props.history.push(routerPathEnum);
+  };
+
   render() {
     return (
       <div className="about-page">
         <img
           className="background"
-          src={require("src/components/about/picsAbout/background.ico")}
+          src={require("src/assets/about-background.ico")}
         />
         <div className="about-all">
           <h2 className="about-heading">
@@ -143,21 +159,6 @@ class About extends React.Component<RouteComponentProps<About>, State> {
       </div>
     );
   }
-  private onClickJoin = (routerPathEnum: RouterPathEnum) => {
-    const { firstName, lastName, email, password } = this.state;
-
-    registerUser({ email, password, firstName, lastName });
-
-    this.props.history.push(routerPathEnum);
-  };
-
-  private onClickSignIn = (routerPathEnum: RouterPathEnum) => {
-    const { loginEmail, loginPassword } = this.state;
-
-    loginUser({ email: loginEmail, password: loginPassword });
-
-    this.props.history.push(routerPathEnum);
-  };
 }
 
 export default About;
