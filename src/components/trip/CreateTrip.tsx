@@ -18,13 +18,11 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
           />
           <div className="trip-all">
             <h1 className="trip-heading">We plan you travel</h1>
-            <span className="trip-text-span"></span>
-            <span></span>
-              
+            <span className="trip-text-span">
               <form data-tab="search-1" className="search">
                 <div className="search_dest">
                   <label className="search__label">
-                  Choose your destination
+                    Choose your destination
                   </label>
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <input
@@ -39,6 +37,30 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
                     className="search__input search_input_from"
                     autoComplete="on"
                   />
+                  <input
+                    type="date"
+                    placeholder="Starting date"
+                    className="search__input search_input_from"
+                    autoComplete="on"
+                  />
+                  <input
+                    type="date"
+                    placeholder="End date"
+                    className="search__input search_input_from"
+                    autoComplete="on"
+                  />
+                  <input
+                    type="number"
+                    placeholder="Max budget"
+                    className="search__input search_input_from"
+                    autoComplete="on"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Add any additional comment"
+                    className="search__input search_input_from"
+                    autoComplete="off"
+                  />
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <button
                     className="btn"
@@ -50,8 +72,7 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
                   </button>
                 </div>
               </form>
-              </span>
-            
+            </span>
           </div>
         </div>
       </>
