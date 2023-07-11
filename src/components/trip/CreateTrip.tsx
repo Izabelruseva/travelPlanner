@@ -18,12 +18,13 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
           />
           <div className="trip-all">
             <h1 className="trip-heading">We plan you travel</h1>
-            <span className="trip-text-span">
-              <p className="trip-text">Choose your destination</p>
+            <span className="trip-text-span"></span>
+            <span></span>
+              
               <form data-tab="search-1" className="search">
                 <div className="search_dest">
                   <label className="search__label">
-                    Where do you want to go?
+                  Choose your destination
                   </label>
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <input
@@ -49,7 +50,8 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
                   </button>
                 </div>
               </form>
-            </span>
+              </span>
+            
           </div>
         </div>
       </>
