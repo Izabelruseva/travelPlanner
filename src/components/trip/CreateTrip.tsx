@@ -31,43 +31,43 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
               <form data-tab="search-1" className="search">
                 <div className="search_dest">
                   <label className="search__label">
-                    Choose your destination and preferences🥳
+                    Choose your destination and preferences
                   </label>
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <input
                     type="text"
-                    placeholder="From: city"
-                    className="search__input search_input_from"
+                    placeholder="From: city🏡"
+                    className="search__input "
                     autoComplete="on"
                   />
                   <input
                     type="text"
-                    placeholder="To: city"
-                    className="search__input search_input_from"
+                    placeholder="To: city🚩"
+                    className="search__input "
                     autoComplete="on"
                   />
                   <input
                     type="date"
-                    placeholder="Starting date"
-                    className="search__input search_input_from"
+                    placeholder="Start date"
+                    className="search__input "
                     autoComplete="on"
                   />
                   <input
                     type="date"
                     placeholder="End date"
-                    className="search__input search_input_from"
+                    className="search__input "
                     autoComplete="on"
                   />
                   <input
                     type="number"
                     placeholder="Max budget..."
-                    className="search__input search_input_from"
+                    className="search__input"
                     autoComplete="on"
                   />
                   <input
                     type="text"
                     placeholder="Add description..."
-                    className="search__input search_input_from"
+                    className="search__input"
                     autoComplete="off"
                   />
                   &nbsp;&nbsp;&nbsp;&nbsp;
