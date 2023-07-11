@@ -47,15 +47,17 @@
 
 .ulContainer li:hover a {
   color: #fff;
+  
 }
 
 .navHeading {
-  font-size: 24px;
-  color: #fff;
-  margin: 0;
-  border-radius: 13px;
-  font-size: 2rem;
-  font-weight: bold;
+    -webkit-text-stroke: 1px black;
+    font-size: 24px;
+    color: #fff;
+    margin: 0;
+    border-radius: 13px;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 * {
