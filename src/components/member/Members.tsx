@@ -73,6 +73,14 @@ class Members extends React.Component<RouteComponentProps<Members>, IState> {
                 We’ve been there, and we think you should go, too.
               </p>
             </span>
+
+            <span className="span">
+              <span className="span-img">
+                <img src={require("src/components/member/pics/1.ico")} />
+                <img src={require("src/components/member/pics/2.ico")} />
+                <img src={require("src/components/member/pics/4.ico")} />
+              </span>
+            </span>
             <span className="span-links">
               <ul className="links-all">
                 {this.state.memberModelList.map(
@@ -99,13 +107,6 @@ class Members extends React.Component<RouteComponentProps<Members>, IState> {
                   )}
                 />
               </Switch>
-            </span>
-            <span className="span">
-              <span className="span-img">
-                <img src={require("src/components/member/pics/1.ico")} />
-                <img src={require("src/components/member/pics/2.ico")} />
-                <img src={require("src/components/member/pics/4.ico")} />
-              </span>
             </span>
           </div>
         </div>
