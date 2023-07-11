@@ -40,6 +40,19 @@ class About extends React.Component<RouteComponentProps<About>, {}> {
                   className="input"
                   autoComplete="off"
                 />
+                <input
+                  type="text"
+                  placeholder="Last name"
+                  className="input"
+                  autoComplete="off"
+                />
+                <label className="name__label">What is your email?</label>
+                <input
+                  type="email"
+                  placeholder="yourEmail@mail.com"
+                  className="input"
+                  autoComplete="off"
+                />
                 <label className="password-label">Choose a password</label>
                 <input
                   type="password"
@@ -54,14 +67,39 @@ class About extends React.Component<RouteComponentProps<About>, {}> {
                   Join me!😊
                 </button>
               </div>
-
-              <button
-                className="btn"
-                onClick={(e: any) => this.props.history.goBack()}
-              >
-                Go to home page to know more about us✈
-              </button>
             </form>
+            <form data-tab="credentials" className="credentials">
+              <div>
+                <label className="name__label">
+                  Already have an account? Sign in:
+                </label>
+                <input
+                  type="email"
+                  placeholder="yourEmail@mail.com"
+                  className="input"
+                  autoComplete="off"
+                />
+                <input
+                  type="password"
+                  placeholder="*******"
+                  className="input"
+                  autoComplete="off"
+                />
+                <button
+                  className="btn"
+                  onClick={(e: any) => this.onClickbtn(RouterPathEnum.MEMBER)}
+                >
+                  Join me!😊
+                </button>
+              </div>
+            </form>
+
+            <button
+              className="btn"
+              onClick={(e: any) => this.props.history.goBack()}
+            >
+              Go to home page to know more about us✈
+            </button>
           </span>
         </div>
       </div>
