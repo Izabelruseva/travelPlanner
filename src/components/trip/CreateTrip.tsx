@@ -26,6 +26,7 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
               adventure, or a cultural immersion, we are here to curate an
               experience that aligns with your aspirations.
             </p>
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <span className="trip-text-span">
               <form data-tab="search-1" className="search">
                 <div className="search_dest">

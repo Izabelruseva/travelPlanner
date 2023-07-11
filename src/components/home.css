@@ -19,7 +19,7 @@
     overflow-y: auto;
 }
 .home-all{
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -34,6 +34,22 @@
     background: #fff;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+.info{
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    -webkit-text-stroke: 1.5px black;
+}
+.info-text{
+    background: linear-gradient(to top,
+    #5aeeee 20%, 
+    #e6bc85 80%
+  );
+    font-size: 1rem;
+    font-weight: 200;
+    
+    
 }
 .home-text-span{
     display: flex;

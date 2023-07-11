@@ -35,9 +35,13 @@
     -webkit-text-fill-color: transparent;
 }
 .trip-info{
-    
-    color: white;
-    
+    background: linear-gradient(to top,
+     rgb(27, 116, 129) 20%, 
+     rgba(124, 200, 235, 0) 80%
+  );
+    color: #faf0f0;
+    font-size: 1rem;
+    font-weight: 200;
 }
 .trip-text{
     width: 90%;
