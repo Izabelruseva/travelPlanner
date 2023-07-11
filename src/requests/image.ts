@@ -18,7 +18,7 @@ export async function uploadImage(tripId: number, image: Image) {
     });
 
     if (!response.ok) {
-        throw new Error('Failed to upload image.');
+        response.status;
     }
 
     const responseData = await response.json();
@@ -37,7 +37,7 @@ export async function getAllImages(tripId: number) {
     });
 
     if (!response.ok) {
-        throw new Error('Failed to get images.');
+        response.status;
     }
 
     const responseData = await response.json();
@@ -56,7 +56,7 @@ export async function deleteImage(tripId: number, imageId: number) {
     });
 
     if (!response.ok) {
-        throw new Error('Failed to delete image.');
+        response.status;
     }
 
     const responseData = await response.json();

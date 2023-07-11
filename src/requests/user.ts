@@ -19,7 +19,7 @@ export async function registerUser(user: User) {
     });
 
     if (!response.ok) {
-        console.error("Failed to register user", response);
+        return response.status;
     }
 
     const responseData = await response.json();
@@ -41,7 +41,7 @@ export async function loginUser(user: User) {
     });
 
     if (!response.ok) {
-        console.error("Failed to login user", response);
+        return response.status;
     }
 
     const responseData = await response.json();
@@ -61,7 +61,7 @@ export async function getUserProfile() {
     });
 
     if (!response.ok) {
-        console.error("Failed to get user profile", response);
+        response.status;
     }
 
     const responseData = await response.json();
@@ -81,7 +81,7 @@ export async function updateUserProfile(user: User) {
     });
 
     if (!response.ok) {
-        throw new Error('Failed to update user profile.');
+        response.status;
     }
 
     const responseData = await response.json();
@@ -100,7 +100,7 @@ export async function deleteUserProfile() {
     });
 
     if (!response.ok) {
-        throw new Error('Failed to delete user profile.');
+        response.status;
     }
 
     const responseData = await response.json();
