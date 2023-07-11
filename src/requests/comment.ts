@@ -16,7 +16,7 @@ export async function addComment(tripId: number, comment: Comment) {
     });
 
     if (!response.ok) {
-        throw new Error('Failed to add comment.');
+        response.status;
     }
 
     const responseData = await response.json();
@@ -35,7 +35,7 @@ export async function getAllComments(tripId: number) {
     });
 
     if (!response.ok) {
-        throw new Error('Failed to get comments.');
+        response.status;
     }
 
     const responseData = await response.json();
@@ -55,7 +55,7 @@ export async function updateComment(commentId: number, comment: Comment) {
     });
 
     if (!response.ok) {
-        throw new Error('Failed to update comment.');
+        response.status;
     }
 
     const responseData = await response.json();
@@ -74,7 +74,7 @@ export async function deleteComment(commentId: number) {
     });
 
     if (!response.ok) {
-        throw new Error('Failed to delete comment.');
+        response.status;
     }
 
     const responseData = await response.json();

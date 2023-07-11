@@ -7,8 +7,6 @@ export const cFetch = async (url: string, options: any) => {
     };
 
     const response = await fetch(`${config.backendUrl}${url}`, options);
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
+
     return response;
 };

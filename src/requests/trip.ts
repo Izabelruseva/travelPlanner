@@ -24,7 +24,7 @@ export async function createTrip(trip: Trip) {
     });
 
     if (!response.ok) {
-        throw new Error('Failed to create trip.');
+        response.status;
     }
 
     const responseData = await response.json();
@@ -43,7 +43,7 @@ export async function getAllTrips(userId: number) {
     });
 
     if (!response.ok) {
-        throw new Error('Failed to get trips.');
+        response.status;
     }
 
     const responseData = await response.json();
@@ -63,7 +63,7 @@ export async function updateTrip(tripId: number, trip: Trip) {
     });
 
     if (!response.ok) {
-        throw new Error('Failed to update trip.');
+        response.status;
     }
 
     const responseData = await response.json();
@@ -82,7 +82,7 @@ export async function deleteTrip(tripId: number) {
     });
 
     if (!response.ok) {
-        throw new Error('Failed to delete trip.');
+        response.status;
     }
 
     const responseData = await response.json();
@@ -101,7 +101,7 @@ export async function likeTrip(tripId: number) {
     });
 
     if (!response.ok) {
-        throw new Error('Failed to like/unlike trip.');
+        response.status;
     }
 
     const responseData = await response.json();

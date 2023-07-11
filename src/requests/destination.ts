@@ -19,6 +19,11 @@ export async function createDestination(destination: Destination) {
         body: JSON.stringify(destination)
     });
 
+    if (!response.ok) {
+        response.status;
+    }
+
+
     const responseData = await response.json();
 
     return responseData;
@@ -34,6 +39,10 @@ export async function getAllDestinations() {
         }
     });
 
+    if (!response.ok) {
+        response.status;
+    }
+
     const responseData = await response.json();
 
     return responseData;
@@ -48,6 +57,10 @@ export async function getDestinationsByTrip(tripId: number) {
             'Content-Type': 'application/json',
         }
     });
+
+    if (!response.ok) {
+        response.status;
+    }
 
     const responseData = await response.json();
 
@@ -65,6 +78,10 @@ export async function updateDestination(tripId: number, destinationId: number, d
         body: JSON.stringify(destination)
     });
 
+    if (!response.ok) {
+        response.status;
+    }
+
     const responseData = await response.json();
 
     return responseData;
@@ -79,6 +96,10 @@ export async function deleteDestination(tripId: number, destinationId: number) {
             'Content-Type': 'application/json',
         }
     });
+
+    if (!response.ok) {
+        response.status;
+    }
 
     const responseData = await response.json();
 
