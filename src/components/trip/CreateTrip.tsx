@@ -27,13 +27,13 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <input
                     type="text"
-                    placeholder="From:"
+                    placeholder="From: city"
                     className="search__input search_input_from"
                     autoComplete="on"
                   />
                   <input
                     type="text"
-                    placeholder="To:"
+                    placeholder="To: city"
                     className="search__input search_input_from"
                     autoComplete="on"
                   />
@@ -51,17 +51,18 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
                   />
                   <input
                     type="number"
-                    placeholder="Max budget"
+                    placeholder="Max budget..."
                     className="search__input search_input_from"
                     autoComplete="on"
                   />
                   <input
                     type="text"
-                    placeholder="Add any additional comment"
+                    placeholder="Add description..."
                     className="search__input search_input_from"
                     autoComplete="off"
                   />
                   &nbsp;&nbsp;&nbsp;&nbsp;
+                  <button className="btn">Save my info</button>
                   <button
                     className="btn"
                     onClick={(e: any) =>
