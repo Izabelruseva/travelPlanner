@@ -7,16 +7,16 @@ interface IProps extends RouteComponentProps<Member> {
 }
 
 class Member extends React.Component<IProps, {}> {
-  constructor(props : IProps){
+  constructor(props: IProps) {
     super(props);
   }
 
   render() {
     const memberModel: MemberModel | null = this.props.memberModel;
 
-    return(
+    return (
       <div className='pics'>
-        <h2 className='like-btn'>{ memberModel ? memberModel.getId() + ' / ' + memberModel.getName() : 'no member' }</h2>
+        <h2 className='like-btn'>{memberModel ? memberModel.getId() + ' / ' + memberModel.getName() : 'no member'}</h2>
       </div>
     );
   }

@@ -4,6 +4,8 @@ import { RouterPathEnum } from "../enums/RouterPathEnum";
 
 import "src/components/home.css";
 
+import { registerUser } from "src/requests/user";
+
 class Home extends React.Component<RouteComponentProps<Home>, {}> {
   constructor(props: RouteComponentProps<Home>) {
     super(props);
@@ -13,6 +15,7 @@ class Home extends React.Component<RouteComponentProps<Home>, {}> {
     return (
       <>
         <div className="page-home">
+          <img className="background" src={require("src/backgroundHome.ico")} />
           <p className="home-all">
             <h2 className="home-heading">
               Hi there, are you ready to start a new adventure?
@@ -40,6 +43,12 @@ class Home extends React.Component<RouteComponentProps<Home>, {}> {
   }
 
   private onClickMove = (routerPathEnum: RouterPathEnum) => {
+    registerUser({
+      firstName: "Kaloyan",
+      lastName: "Dimitrov",
+      password: "123",
+      email: "test@test.bg",
+    });
     this.props.history.push(routerPathEnum);
   };
 }

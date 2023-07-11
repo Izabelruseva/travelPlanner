@@ -11,6 +11,10 @@ class About extends React.Component<RouteComponentProps<About>, {}> {
   render() {
     return (
       <div className="about-page">
+        <img
+          className="background"
+          src={require("src/components/about/picsAbout/background.ico")}
+        />
         <div className="about-all">
           <h2 className="about-heading">
             We are happy to have you interested in becoming part of our team

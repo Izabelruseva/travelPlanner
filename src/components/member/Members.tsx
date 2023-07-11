@@ -55,49 +55,62 @@ class Members extends React.Component<RouteComponentProps<Members>, IState> {
 
   render() {
     return (
-      <div className="members-page">
-        <h2 className="members-heading">
-          You’re always a short detour from an Extraordinary Place
-        </h2>
-        <span className="members-span">
-          <p className="members-text">
-            Our collection of more than 300 Extraordinary Places will take your
-            trip to the next level. Look for the illustrations on our maps and
-            read our takes on what make these places so special. We’ve been
-            there, and we think you should go, too.
-          </p>
-        </span>
-        <span className="span-links">
-          <ul className="links-all">
-            {this.state.memberModelList.map(
-              (model: MemberModel, idx: number) => {
-                return (
-                  <li className="links" key={idx}>
-                    <Link to={this.props.match.url + "/" + idx}>
-                      {model.getName()}
-                    </Link>
-                  </li>
-                );
-              }
-            )}
-          </ul>
-          <Switch>
-            <Route exact={true} path={RouterPathEnum.MEMBER} />
-            <Route
-              path={this.props.match.url + "/:id"}
-              render={(props) => (
-                <Member {...props} memberModel={this.getMemberModelFromUrl()} />
-              )}
-            />
-          </Switch>
-        </span>
-        <span>
-          <img src={require("src/components/member/pics/1.ico")} />
-          <img src={require("src/components/member/pics/2.ico")} />
-          <img src={require("src/components/member/pics/3.ico")} />
-          <img src={require("src/components/member/pics/4.ico")} />
-        </span>
-      </div>
+      <>
+        <div className="members-page">
+          <img
+            className="background"
+            src={require("src/components/member/pics/background.ico")}
+          />
+          <div className="members-all">
+            <h2 className="members-heading">
+              You’re always a short detour from an Extraordinary Place
+            </h2>
+            <span className="members-span">
+              <p className="members-text">
+                Our collection of more than 300 Extraordinary Places will take
+                your trip to the next level. Look for the illustrations on our
+                maps and read our takes on what make these places so special.
+                We’ve been there, and we think you should go, too.
+              </p>
+            </span>
+            <span className="span-links">
+              <ul className="links-all">
+                {this.state.memberModelList.map(
+                  (model: MemberModel, idx: number) => {
+                    return (
+                      <li className="links" key={idx}>
+                        <Link to={this.props.match.url + "/" + idx}>
+                          {model.getName()}
+                        </Link>
+                      </li>
+                    );
+                  }
+                )}
+              </ul>
+              <Switch>
+                <Route exact={true} path={RouterPathEnum.MEMBER} />
+                <Route
+                  path={this.props.match.url + "/:id"}
+                  render={(props) => (
+                    <Member
+                      {...props}
+                      memberModel={this.getMemberModelFromUrl()}
+                    />
+                  )}
+                />
+              </Switch>
+            </span>
+            <span className="span">
+              <span className="span-img">
+                <img src={require("src/components/member/pics/1.ico")} />
+                <img src={require("src/components/member/pics/2.ico")} />
+                <img src={require("src/components/member/pics/3.ico")} />
+                <img src={require("src/components/member/pics/4.ico")} />
+              </span>
+            </span>
+          </div>
+        </div>
+      </>
     );
   }
 }

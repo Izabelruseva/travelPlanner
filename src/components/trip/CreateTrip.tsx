@@ -12,6 +12,10 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
     return (
       <>
         <div className="trip-page">
+          <img
+            className="background"
+            src={require("src/components/trip/backgroundTrip.ico")}
+          />
           <div className="trip-all">
             <h1 className="trip-heading">We plan you travel</h1>
             <span className="trip-text-span">
