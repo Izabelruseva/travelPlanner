@@ -18,11 +18,19 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
           />
           <div className="trip-all">
             <h1 className="trip-heading">We plan you travel</h1>
+            <p className="trip-info">
+              We understand that each traveler is unique, with different
+              preferences, interests, and budgets. That's why we take pride in
+              offering a personalized approach to travel planning. Whether
+              you're seeking a luxurious beach getaway, an adrenaline-fueled
+              adventure, or a cultural immersion, we are here to curate an
+              experience that aligns with your aspirations.
+            </p>
             <span className="trip-text-span">
               <form data-tab="search-1" className="search">
                 <div className="search_dest">
                   <label className="search__label">
-                    Choose your destination
+                    Choose your destination and preferences🥳
                   </label>
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <input
