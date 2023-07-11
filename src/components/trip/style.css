@@ -104,16 +104,22 @@
 
 input[type="text"],
 input[type="date"],
-input[type="number"] {
+input[type="number"],
+input[placeholder] {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  color: black;
+  color: black !important;
+  opacity: 1;
   border: none;
   font-size: smaller;
   border-radius: 5px;
   box-sizing: border-box;
 }
+::placeholder {
+ color: black;
+}
+
 * {
     padding: 5;
     margin: 5;
