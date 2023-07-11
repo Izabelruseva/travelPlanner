@@ -17,12 +17,12 @@ class About extends React.Component<RouteComponentProps<About>, State> {
   constructor(props: RouteComponentProps<About>) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      loginEmail: '',
-      loginPassword: '',
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      loginEmail: "",
+      loginPassword: "",
     };
   }
 
@@ -53,7 +53,7 @@ class About extends React.Component<RouteComponentProps<About>, State> {
               family you will be able to save ideas for your future trip{" "}
             </p>
           </span>
-          <span className="about-text-span">
+          <span className="login-forms">
             <form data-tab="credentials" className="credentials">
               <div>
                 <label className="name__label">What is your name?</label>
@@ -99,6 +99,7 @@ class About extends React.Component<RouteComponentProps<About>, State> {
                 </button>
               </div>
             </form>
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <form data-tab="credentials" className="credentials">
               <div>
                 <label className="name__label">
@@ -122,13 +123,15 @@ class About extends React.Component<RouteComponentProps<About>, State> {
                 />
                 <button
                   className="btn"
-                  onClick={(e: any) => this.onClickSignIn(RouterPathEnum.MEMBER)}
+                  onClick={(e: any) =>
+                    this.onClickSignIn(RouterPathEnum.MEMBER)
+                  }
                 >
-                  Join me!😊
+                  Sign in!😎
                 </button>
               </div>
             </form>
-
+            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
             <button
               className="btn"
               onClick={(e: any) => this.props.history.goBack()}

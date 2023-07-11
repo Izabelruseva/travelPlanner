@@ -66,9 +66,40 @@
   font-size: 1.2rem;
   font-weight: bold;
   color: #333;
-
-
 }
+.login-forms{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    
+    background: linear-gradient(to top,
+    #ffae42 20%, 
+    #00FFFF 80%
+  );
+}
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  font-size: smaller;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.name__label,
+.password-label {
+  margin-top: 10px;
+}
+
+  
+  
 
 @media screen and (max-width: 555px) {
   .about-page {
