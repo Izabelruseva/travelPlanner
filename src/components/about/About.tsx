@@ -62,11 +62,11 @@ class About extends React.Component<RouteComponentProps<About>, State> {
           </h2>
           <span className="about-text-span">
             <p className="about-text">
-              You are a few steps away from starting the experience
-            </p>
-            <p className="about-text">
-              Turn your road trip into an adventure.By becoming part of our
-              family you will be able to save ideas for your future trip{" "}
+              Join us on this exciting journey as we unlock the world's hidden
+              treasures and share our passion for travel with you. Together,
+              let's create memories that will last a lifetime and embark on
+              extraordinary adventures that will leave a lasting impact. Welcome
+              to our travel community, where dreams are turned into reality.
             </p>
           </span>
           <span className="login-forms">
