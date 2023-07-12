@@ -36,7 +36,7 @@ class About extends React.Component<RouteComponentProps<About>, State> {
   onClickJoin = async (routerPathEnum: RouterPathEnum) => {
     const { firstName, lastName, email, password } = this.state;
 
-    await registerUser({ email, password, firstName, lastName });
+    console.log(await registerUser({ email, password, firstName, lastName }));
 
     this.props.history.push(routerPathEnum);
   };
