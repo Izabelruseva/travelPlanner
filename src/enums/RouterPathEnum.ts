@@ -3,6 +3,7 @@ export enum RouterPathEnum {
     HOME = '/',
     ABOUT = '/about',
     MEMBER = '/member',
-    CREATE_TRIP = '/trip/create'
+    CREATE_TRIP = '/trip/create',
+    MODAL = '/tripModal'
 
 }

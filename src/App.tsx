@@ -7,8 +7,9 @@ import HeaderSmall from "./components/header/HeaderSmall";
 import CreateTrip from "./components/trip/CreateTrip";
 import { RouterPathEnum } from "./enums/RouterPathEnum";
 import Members from "./components/member/Members";
-
 import { withAuth } from "./components/auth/Auth";
+import tripModal from "./components/tripModal/tripModal";
+import useModal from "./components/tripModal/useModal";
 
 interface IState {
   isSmallScreen: boolean;
@@ -42,7 +43,11 @@ class App extends React.Component<{}, IState> {
             <Route exact={true} path={RouterPathEnum.HOME} component={Home} />
             <Route path={RouterPathEnum.ABOUT} component={About} />
             <Route path={RouterPathEnum.MEMBER} component={Members} />
-            <Route path={RouterPathEnum.CREATE_TRIP} component={withAuth(CreateTrip)} />
+            <Route
+              path={RouterPathEnum.CREATE_TRIP}
+              component={withAuth(CreateTrip)}
+            />
+            <Route path={RouterPathEnum.MODAL} component={tripModal} />
             <Redirect to={RouterPathEnum.HOME} />
           </Switch>
         </div>
