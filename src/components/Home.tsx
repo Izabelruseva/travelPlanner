@@ -5,15 +5,11 @@ import { RouterPathEnum } from "../enums/RouterPathEnum";
 import "src/components/home.css";
 
 class Home extends React.Component<RouteComponentProps<Home>, {}> {
-  constructor(props: RouteComponentProps<Home>) {
-    super(props);
-  }
-
   render() {
     return (
       <>
         <div className="page-home">
-          <img className="background" src={require("src/backgroundHome.ico")} />
+          <img className="background" src={require("src/assets/home-background.ico")} />
           <p className="home-all">
             <h2 className="home-heading">
               Hi there, are you ready to start a new adventure?
@@ -24,21 +20,21 @@ class Home extends React.Component<RouteComponentProps<Home>, {}> {
               </p>
               <button
                 className="btn"
-                onClick={(e: any) => this.onClickMove(RouterPathEnum.ABOUT)}
+                onClick={() => this.onClickMove(RouterPathEnum.ABOUT)}
               >
                 sign up
               </button>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <button
                 className="btn"
-                onClick={(e: any) => this.onClickMove(RouterPathEnum.ABOUT)}
+                onClick={() => this.onClickMove(RouterPathEnum.ABOUT)}
               >
                 log in
               </button>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <button
                 className="btn"
-                onClick={(e: any) => this.onClickMove(RouterPathEnum.MEMBER)}
+                onClick={() => this.onClickMove(RouterPathEnum.MEMBER)}
               >
                 See trip ideas
               </button>

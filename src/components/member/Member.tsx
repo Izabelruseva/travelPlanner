@@ -7,12 +7,8 @@ interface IProps extends RouteComponentProps<Member> {
 }
 
 class Member extends React.Component<IProps, {}> {
-  constructor(props: IProps) {
-    super(props);
-  }
-
   render() {
-    const memberModel: MemberModel | null = this.props.memberModel;
+    const { memberModel } = this.props;
 
     return (
       <div className='pics'>

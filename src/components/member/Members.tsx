@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { RouterPathEnum } from "../../enums/RouterPathEnum";
 import Member from "./Member";
 import "src/components/member/member.css";
-import "src/components/member/pics/1.ico";
 import { getUserProfile } from "src/requests/user";
 
 interface IState {
@@ -33,38 +32,23 @@ class Members extends React.Component<RouteComponentProps<Members>, IState> {
   }
 
   private makeSampleMemberModels = (): MemberModel[] => {
-    const arrMembers: MemberModel[] = [];
-
-    arrMembers.push(new MemberModel(0, "Trip to Varna"));
-    arrMembers.push(new MemberModel(1, "Trip to Stara Zagora"));
-    arrMembers.push(new MemberModel(2, "Trip to Ruse"));
-
-    return arrMembers;
+    return ["Trip to Varna", "Trip to Stara Zagora", "Trip to Ruse"].map(
+      (trip, index) => new MemberModel(index, trip)
+    );
   };
 
   private getMemberModelFromUrl = (): MemberModel | null => {
-    // i don't know how to get only :id. so..
     const strId: string = this.props.location.pathname.split(
       this.props.match.path + "/"
     )[1];
 
-    return this.getMemberModelById(this.state.memberModelList, Number(strId));
+    return this.getMemberModelById(Number(strId));
   };
 
-  private getMemberModelById = (
-    arr: MemberModel[],
-    nId: number
-  ): MemberModel | null => {
-    var memberModel: MemberModel;
+  private getMemberModelById = (nId: number): MemberModel | null => {
+    const { memberModelList } = this.state;
 
-    for (var i: number = 0; i < arr.length; ++i) {
-      memberModel = arr[i];
-      if (memberModel.getId() === nId) {
-        return memberModel;
-      }
-    }
-
-    return null;
+    return memberModelList.find((model) => model.getId() === nId) || null;
   };
 
   render() {
@@ -74,7 +58,7 @@ class Members extends React.Component<RouteComponentProps<Members>, IState> {
         <div className="members-page">
           <img
             className="background"
-            src={require("src/components/member/pics/background.ico")}
+            src={require("src/assets/member-background.ico")}
           />
           <div className="welcome-message">
             Welcome back, {firstName ? firstName : "Loading..."}
@@ -95,9 +79,9 @@ class Members extends React.Component<RouteComponentProps<Members>, IState> {
 
             <span className="span">
               <span className="span-img">
-                <img src={require("src/components/member/pics/1.ico")} />
-                <img src={require("src/components/member/pics/2.ico")} />
-                <img src={require("src/components/member/pics/4.ico")} />
+                <img src={require("src/assets/1.ico")} />
+                <img src={require("src/assets/2.ico")} />
+                <img src={require("src/assets/4.ico")} />
               </span>
             </span>
             <span className="span-links">
