@@ -3,6 +3,15 @@ import { RouteComponentProps } from "react-router";
 import { RouterPathEnum } from "src/enums/RouterPathEnum";
 import "src/components/trip/style.css";
 
+interface State {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  loginEmail: string;
+  loginPassword: string;
+}
+
 class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
   constructor(props: RouteComponentProps<CreateTrip>) {
     super(props);
@@ -36,6 +45,7 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <input
                     type="text"
+                    name="fromCity"
                     placeholder="From: city🏡"
                     className="search__input "
                     autoComplete="on"
