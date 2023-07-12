@@ -61,7 +61,7 @@ export async function getUserProfile() {
     });
 
     if (!response.ok) {
-        response.status;
+        return 0;
     }
 
     const responseData = await response.json();

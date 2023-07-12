@@ -8,6 +8,8 @@ import CreateTrip from "./components/trip/CreateTrip";
 import { RouterPathEnum } from "./enums/RouterPathEnum";
 import Members from "./components/member/Members";
 
+import { withAuth } from "./components/auth/Auth";
+
 interface IState {
   isSmallScreen: boolean;
 }
@@ -40,7 +42,7 @@ class App extends React.Component<{}, IState> {
             <Route exact={true} path={RouterPathEnum.HOME} component={Home} />
             <Route path={RouterPathEnum.ABOUT} component={About} />
             <Route path={RouterPathEnum.MEMBER} component={Members} />
-            <Route path={RouterPathEnum.CREATE_TRIP} component={CreateTrip} />
+            <Route path={RouterPathEnum.CREATE_TRIP} component={withAuth(CreateTrip)} />
             <Redirect to={RouterPathEnum.HOME} />
           </Switch>
         </div>
