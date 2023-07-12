@@ -36,6 +36,26 @@ class CreateTrip extends React.Component<
     });
   };
 
+  private onClickTrip = (routerPathEnum: RouterPathEnum) => {
+    const { fromCity, toCity, startDate, endDate, maxBudget, description } =
+      this.state;
+
+    await Trip({
+      fromCity,
+      toCity,
+      startDate,
+      endDate,
+      maxBudget,
+      description,
+    });
+
+    this.props.history.push(routerPathEnum);
+  };
+
+  private onClickMove = (routerPathEnum: RouterPathEnum) => {
+    this.props.history.push(routerPathEnum);
+  };
+
   render() {
     return (
       <>
@@ -130,24 +150,5 @@ class CreateTrip extends React.Component<
       </>
     );
   }
-  private onClickTrip = (routerPathEnum: RouterPathEnum) => {
-    const { fromCity, toCity, startDate, endDate, maxBudget, description } =
-      this.state;
-
-    Trip({
-      fromCity,
-      toCity,
-      startDate,
-      endDate,
-      maxBudget,
-      description,
-    });
-
-    this.props.history.push(routerPathEnum);
-  };
-
-  private onClickMove = (routerPathEnum: RouterPathEnum) => {
-    this.props.history.push(routerPathEnum);
-  };
 }
 export default CreateTrip;
