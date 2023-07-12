@@ -2,20 +2,39 @@ import * as React from "react";
 import { RouteComponentProps } from "react-router";
 import { RouterPathEnum } from "src/enums/RouterPathEnum";
 import "src/components/trip/style.css";
+import { Trip } from "src/requests/trip";
 
-interface State {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  loginEmail: string;
-  loginPassword: string;
+interface Trip {
+  fromCity: string;
+  toCity: string;
+  startDate: string;
+  endDate: string;
+  budget: number;
+  description: string;
 }
 
-class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
+class CreateTrip extends React.Component<
+  RouteComponentProps<CreateTrip>,
+  tripForm
+> {
   constructor(props: RouteComponentProps<CreateTrip>) {
     super(props);
+    this.state = {
+      fromCity: "",
+      toCity: "",
+      startDate: "",
+      endDate: "",
+      budget: "",
+      description: "",
+    };
   }
+
+  handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      ...this.state,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   render() {
     return (
@@ -48,44 +67,57 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
                     name="fromCity"
                     placeholder="From: city🏡"
                     className="search__input "
-                    autoComplete="on"
+                    autoComplete="off"
+                    onChange={this.handleInputChange}
                   />
                   <input
                     type="text"
+                    name="toCity"
                     placeholder="To: city🚩"
                     className="search__input "
-                    autoComplete="on"
+                    autoComplete="off"
+                    onChange={this.handleInputChange}
                   />
                   <input
                     type="date"
+                    name="startDate"
                     placeholder="Start date"
                     className="search__input "
                     autoComplete="on"
+                    onChange={this.handleInputChange}
                   />
                   <input
                     type="date"
+                    name="endDate"
                     placeholder="End date"
                     className="search__input "
                     autoComplete="on"
+                    onChange={this.handleInputChange}
                   />
                   <input
                     type="number"
+                    name="budget"
                     placeholder="Max budget..."
                     className="search__input"
-                    autoComplete="on"
+                    autoComplete="off"
+                    onChange={this.handleInputChange}
                   />
                   <input
                     type="text"
+                    name="description"
                     placeholder="Add description..."
                     className="search__input"
                     autoComplete="off"
+                    onChange={this.handleInputChange}
                   />
                   &nbsp;&nbsp;&nbsp;&nbsp;
-                  <button className="btn">Save my info</button>
+                  <button className="btn">
+                    Save my info and see other ideas
+                  </button>
                   <button
                     className="btn"
                     onClick={(e: any) =>
-                      this.onClickMove(RouterPathEnum.MEMBER)
+                      this.onClickTrip(RouterPathEnum.MEMBER)
                     }
                   >
                     See other's trip ideas
@@ -98,6 +130,22 @@ class CreateTrip extends React.Component<RouteComponentProps<CreateTrip>, {}> {
       </>
     );
   }
+  private onClickTrip = (routerPathEnum: RouterPathEnum) => {
+    const { fromCity, toCity, startDate, endDate, maxBudget, description } =
+      this.state;
+
+    Trip({
+      fromCity,
+      toCity,
+      startDate,
+      endDate,
+      maxBudget,
+      description,
+    });
+
+    this.props.history.push(routerPathEnum);
+  };
+
   private onClickMove = (routerPathEnum: RouterPathEnum) => {
     this.props.history.push(routerPathEnum);
   };
