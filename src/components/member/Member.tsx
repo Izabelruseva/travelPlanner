@@ -1,21 +1,22 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
+import { useParams, useLocation } from 'react-router';
 import MemberModel from '../../models/MemberModel';
 
-interface IProps extends RouteComponentProps<Member> {
+interface IProps {
   memberModel: MemberModel | null;
 }
 
-class Member extends React.Component<IProps, {}> {
-  render() {
-    const { memberModel } = this.props;
+const Member: React.FC<IProps> = ({ memberModel }) => {
+  const params = useParams<{ memberId: string }>();
+  const location = useLocation();
 
-    return (
-      <div className='pics'>
-        <h2 className='like-btn'>{memberModel ? memberModel.getId() + ' / ' + memberModel.getName() : 'no member'}</h2>
-      </div>
-    );
-  }
-}
+  return (
+    <div className='pics'>
+      <h2 className='like-btn'>
+        {memberModel ? memberModel.getId() + ' / ' + memberModel.getName() : 'no member'}
+      </h2>
+    </div>
+  );
+};
 
 export default Member;

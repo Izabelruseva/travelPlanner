@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import Header from "./components/header/Header";
 import Home from "./components/Home";
 import About from "./components/about/About";
@@ -7,9 +7,6 @@ import HeaderSmall from "./components/header/HeaderSmall";
 import CreateTrip from "./components/trip/CreateTrip";
 import { RouterPathEnum } from "./enums/RouterPathEnum";
 import Members from "./components/member/Members";
-import { withAuth } from "./components/auth/Auth";
-import tripModal from "./components/tripModal/tripModal";
-import useModal from "./components/tripModal/useModal";
 
 interface IState {
   isSmallScreen: boolean;
@@ -39,17 +36,13 @@ class App extends React.Component<{}, IState> {
       <BrowserRouter>
         <div>
           {this.state.isSmallScreen ? <HeaderSmall /> : <Header />}
-          <Switch>
-            <Route exact={true} path={RouterPathEnum.HOME} component={Home} />
-            <Route path={RouterPathEnum.ABOUT} component={About} />
-            <Route path={RouterPathEnum.MEMBER} component={Members} />
-            <Route
-              path={RouterPathEnum.CREATE_TRIP}
-              component={withAuth(CreateTrip)}
-            />
-            <Route path={RouterPathEnum.MODAL} component={tripModal} />
-            <Redirect to={RouterPathEnum.HOME} />
-          </Switch>
+          <Routes>
+            <Route path={RouterPathEnum.HOME} element={<Home />} />
+            <Route path={RouterPathEnum.ABOUT} element={<About />} />
+            <Route path={RouterPathEnum.MEMBER} element={<Members />} />
+            <Route path={RouterPathEnum.CREATE_TRIP} element={<CreateTrip />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
         </div>
       </BrowserRouter>
     );

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 import { RouterPathEnum } from '../../enums/RouterPathEnum';
 
-class Header extends React.Component<React.Props<Header>, {}> {
+class Header extends React.Component<{}, {}> {
   render() {
     return (
       <div>
