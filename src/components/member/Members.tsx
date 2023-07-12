@@ -95,25 +95,6 @@ const Members: React.FC = () => {
           </span>
           <span className="span-links">
             <button className="btn">show modal</button>
-
-            <ul className="links-all">
-              {memberModelList.map((model: MemberModel, idx: number) => {
-                return (
-                  <li className="links" key={idx}>
-                    <Link to={RouterPathEnum.MEMBER + "/" + idx}>
-                      {model.getName()}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-            <Routes>
-              <Route path={RouterPathEnum.MEMBER} element={<></>} />
-              <Route
-                path={RouterPathEnum.MEMBER + "/:id"}
-                element={<Member memberModel={getMemberModelFromUrl()} />}
-              />
-            </Routes>
           </span>
         </div>
       </div>
