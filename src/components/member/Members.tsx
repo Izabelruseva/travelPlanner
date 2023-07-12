@@ -1,16 +1,10 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
-import MemberModel from "../../models/MemberModel";
 import { Link, Routes, Route } from "react-router-dom";
 import { RouterPathEnum } from "../../enums/RouterPathEnum";
 import Member from "./Member";
 import "src/components/member/member.css";
 import { getUserProfile } from "src/requests/user";
-
-interface IState {
-  memberModelList: MemberModel[];
-  firstName: string | null;
-}
 
 const Members: React.FC = () => {
   const location = useLocation();
@@ -32,12 +26,6 @@ const Members: React.FC = () => {
       }
     };
 
-    const makeSampleMemberModels = (): MemberModel[] => {
-      return ["Trip to Varna", "Trip to Stara Zagora", "Trip to Ruse"].map(
-        (trip, index) => new MemberModel(index, trip)
-      );
-    };
-
     setState((prevState) => ({
       ...prevState,
       memberModelList: makeSampleMemberModels(),
@@ -45,22 +33,6 @@ const Members: React.FC = () => {
 
     fetchUserProfile();
   }, []);
-
-  const getMemberModelFromUrl = (): MemberModel | null => {
-    const strId: string = location.pathname.split(
-      RouterPathEnum.MEMBER + "/"
-    )[1];
-
-    return getMemberModelById(Number(strId));
-  };
-
-  const getMemberModelById = (nId: number): MemberModel | null => {
-    const { memberModelList } = state;
-
-    return memberModelList.find((model) => model.getId() === nId) || null;
-  };
-
-  const { firstName, memberModelList } = state;
 
   return (
     <>
@@ -95,25 +67,6 @@ const Members: React.FC = () => {
           </span>
           <span className="span-links">
             <button className="btn">show modal</button>
-
-            <ul className="links-all">
-              {memberModelList.map((model: MemberModel, idx: number) => {
-                return (
-                  <li className="links" key={idx}>
-                    <Link to={RouterPathEnum.MEMBER + "/" + idx}>
-                      {model.getName()}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-            <Routes>
-              <Route path={RouterPathEnum.MEMBER} element={<></>} />
-              <Route
-                path={RouterPathEnum.MEMBER + "/:id"}
-                element={<Member memberModel={getMemberModelFromUrl()} />}
-              />
-            </Routes>
           </span>
         </div>
       </div>
