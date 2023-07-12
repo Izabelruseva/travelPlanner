@@ -86,7 +86,7 @@ class Members extends React.Component<RouteComponentProps<Members>, IState> {
             </span>
             <span className="span-links">
               <button className="btn">show modal</button>
-              
+
               <ul className="links-all">
                 {this.state.memberModelList.map(
                   (model: MemberModel, idx: number) => {
