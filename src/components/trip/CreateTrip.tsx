@@ -15,7 +15,8 @@ interface Trip {
 
 class CreateTrip extends React.Component<
   RouteComponentProps<CreateTrip>,
-  Trip {
+  Trip
+> {
   constructor(props: RouteComponentProps<CreateTrip>) {
     super(props);
     this.state = {
