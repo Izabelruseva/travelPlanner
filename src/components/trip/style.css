@@ -189,4 +189,23 @@ input[placeholder] {
     padding: 20px;
     animation: zoomIn 0.3s ease;
   }
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgb(218, 229, 233);
+    border: none;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 999;
+    transition: transform 0.3s ease;
+    box-shadow: 6px 6px 12px #00FFFF,
+    -6px -6px 12px #ffae42;
+    width: 2em;
+    height: 2rem;
+    border-radius: 30em;
+  }
+  .close-button:hover {
+    transform: rotate(180deg);
   
