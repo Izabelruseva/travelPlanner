@@ -37,6 +37,7 @@ const CreateTrip: React.FC = () => {
   const [destinationModalIsOpen, setDestinationModalIsOpen] = React.useState(false);
   const [destinationMarkerPosition, setDestinationMarkerPosition] = React.useState<[number, number]>([51.505, -0.09]);
   const [currentDestinationIndex, setCurrentDestinationIndex] = React.useState<number | null>(null);
+  const [uploadedImages, setUploadedImages] = React.useState<string[]>([]);
   const [state, setState] = React.useState<ITrip>({
     title: "",
     destinations: [],
@@ -70,6 +71,14 @@ const CreateTrip: React.FC = () => {
       ...prevState,
       [name as keyof ITrip]: value,
     }));
+  };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      const files = Array.from(event.target.files);
+      const fileURLs = files.map(file => URL.createObjectURL(file));
+      setUploadedImages(fileURLs);
+    }
   };
 
   const handleLocationChange = (index: number, location: { lat: number, lng: number }) => {
@@ -165,6 +174,16 @@ const CreateTrip: React.FC = () => {
                   autoComplete="off"
                   onChange={handleInputChange}
                 />
+                <input
+                  type="file"
+                  name="image"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  multiple
+                />
+                {uploadedImages.map((image, index) => (
+                  <img key={index} src={image} alt={`Uploaded ${index}`} />
+                ))}
                 {state.destinations.map((destination, index) => (
                   <div key={index}>
                     <input
