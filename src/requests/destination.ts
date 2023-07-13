@@ -8,8 +8,27 @@ export interface Destination {
     tripId?: number;
 }
 
+async function getCountryName(latitude: string, longitude: string) {
+    const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    const country = data.address?.country;
+
+    return country ? country : 'Unknown Country';
+}
+
+
 export async function createDestination(destination: Destination) {
     const endpoint = '/api/destinations/create';
+
+    const [latitude, longitude] = destination.coordinates?.split(' ') || [];
+
+    if (!destination.name && latitude && longitude) {
+        const country = await getCountryName(latitude, longitude);
+        destination.name = `Destination to ${country}`;
+    }
 
     const response = await cFetch(endpoint, {
         method: 'POST',
