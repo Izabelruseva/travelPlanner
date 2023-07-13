@@ -214,16 +214,8 @@
     transform: scale(1.2);
   }
   
-.modal-content {
-    position: relative;
-    margin: 10% auto;
-    width: 80%;
-    max-width: 600px;
-    background-color: #fff;
-    border-radius: 5px;
-    animation: zoomIn 0.3s ease;
-  }
-  .modal-content img {
+
+.modal-content img {
     display: block;
     width: 80%;
     height: auto;
