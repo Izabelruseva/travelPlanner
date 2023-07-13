@@ -18,10 +18,13 @@ const customMarkerIcon = divIcon({
   html: iconMarkup
 });
 
+interface IDestination {
+  city: { lat: number, lng: number };
+}
+
 interface ITrip {
   title: string;
-  fromCity: { lat: number, lng: number };
-  toCity: { lat: number, lng: number };
+  destinations: IDestination[];
   startDate: string;
   endDate: string;
   budget: number;
@@ -31,14 +34,12 @@ interface ITrip {
 const CreateTrip: React.FC = () => {
   const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
-  const [fromCityModalIsOpen, setFromCityModalIsOpen] = React.useState(false);
-  const [toCityModalIsOpen, setToCityModalIsOpen] = React.useState(false);
-  const [fromCityMarkerPosition, setFromCityMarkerPosition] = React.useState<[number, number]>([51.505, -0.09]);
-  const [toCityMarkerPosition, setToCityMarkerPosition] = React.useState<[number, number]>([51.505, -0.09]);
+  const [destinationModalIsOpen, setDestinationModalIsOpen] = React.useState(false);
+  const [destinationMarkerPosition, setDestinationMarkerPosition] = React.useState<[number, number]>([51.505, -0.09]);
+  const [currentDestinationIndex, setCurrentDestinationIndex] = React.useState<number | null>(null);
   const [state, setState] = React.useState<ITrip>({
     title: "",
-    fromCity: { lat: 0, lng: 0 },
-    toCity: { lat: 0, lng: 0 },
+    destinations: [],
     startDate: "",
     endDate: "",
     budget: 0,
@@ -71,20 +72,42 @@ const CreateTrip: React.FC = () => {
     }));
   };
 
-  const handleLocationChange = (name: 'fromCity' | 'toCity', location: { lat: number, lng: number }) => {
-    setState((prevState) => ({
-      ...prevState,
-      [name]: location,
-    }));
+  const handleLocationChange = (index: number, location: { lat: number, lng: number }) => {
+    setState((prevState) => {
+      const newDestinations = [...prevState.destinations];
+      newDestinations[index] = { city: location };
+      return {
+        ...prevState,
+        destinations: newDestinations,
+      };
+    });
   };
 
   const onClickTrip = (routerPathEnum: RouterPathEnum, event: React.MouseEvent) => {
     event.preventDefault();
-    const { title, fromCity, toCity, startDate, endDate, budget, description } = state;
+    const { title, destinations, startDate, endDate, budget, description } = state;
 
     createTrip({ title, description, startDate, endDate, budget: +budget });
 
     navigate(routerPathEnum);
+  };
+
+  const addDestination = () => {
+    setState(prevState => ({
+      ...prevState,
+      destinations: [...prevState.destinations, { city: { lat: 0, lng: 0 } }],
+    }));
+  };
+
+  const removeDestination = (index: number) => {
+    setState(prevState => {
+      const newDestinations = [...prevState.destinations];
+      newDestinations.splice(index, 1);
+      return {
+        ...prevState,
+        destinations: newDestinations,
+      };
+    });
   };
 
   return (
@@ -110,64 +133,6 @@ const CreateTrip: React.FC = () => {
                   onClick={() => setModalIsOpen(true)}
                   value={state.title}
                 />
-                <input
-                  type="text"
-                  name="fromCity"
-                  placeholder="From City"
-                  className="search__input"
-                  autoComplete="off"
-                  onChange={handleInputChange}
-                  onClick={() => setFromCityModalIsOpen(true)}
-                  value={state.fromCity.lat !== 0 && state.fromCity.lng !== 0 ? `Lat: ${state.fromCity.lat}, Lng: ${state.fromCity.lng}` : ""}
-                />
-                <Modal isOpen={fromCityModalIsOpen} onRequestClose={() => {
-                  setFromCityModalIsOpen(false);
-                  handleLocationChange('fromCity', { lat: fromCityMarkerPosition[0], lng: fromCityMarkerPosition[1] });
-                }}>
-                  <div style={{ height: '100vh', width: '100%' }}>
-                    <MapContainer center={fromCityMarkerPosition} zoom={13} style={{ height: '100%', width: '100%' }} scrollWheelZoom={false}>
-                      <MapEvents setMarkerPosition={setFromCityMarkerPosition} />
-                      <TileLayer
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                      />
-                      <Marker position={fromCityMarkerPosition} icon={customMarkerIcon}>
-                        <Popup>
-                          A pretty CSS3 popup. <br /> Easily customizable.
-                        </Popup>
-                      </Marker>
-                    </MapContainer>
-                  </div>
-                </Modal>
-                <input
-                  type="text"
-                  name="toCity"
-                  placeholder="To City"
-                  className="search__input"
-                  autoComplete="off"
-                  onChange={handleInputChange}
-                  onClick={() => setToCityModalIsOpen(true)}
-                  value={state.toCity.lat !== 0 && state.toCity.lng !== 0 ? `Lat: ${state.toCity.lat}, Lng: ${state.toCity.lng}` : ""}
-                />
-                <Modal isOpen={toCityModalIsOpen} onRequestClose={() => {
-                  setToCityModalIsOpen(false);
-                  handleLocationChange('toCity', { lat: toCityMarkerPosition[0], lng: toCityMarkerPosition[1] });
-                }}>
-                  <div style={{ height: '100vh', width: '100%' }}>
-                    <MapContainer center={toCityMarkerPosition} zoom={13} style={{ height: '100%', width: '100%' }} scrollWheelZoom={false}>
-                      <MapEvents setMarkerPosition={setToCityMarkerPosition} />
-                      <TileLayer
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                      />
-                      <Marker position={toCityMarkerPosition} icon={customMarkerIcon}>
-                        <Popup>
-                          A pretty CSS3 popup. <br /> Easily customizable.
-                        </Popup>
-                      </Marker>
-                    </MapContainer>
-                  </div>
-                </Modal>
                 <input
                   type="date"
                   name="startDate"
@@ -200,6 +165,43 @@ const CreateTrip: React.FC = () => {
                   autoComplete="off"
                   onChange={handleInputChange}
                 />
+                {state.destinations.map((destination, index) => (
+                  <div key={index}>
+                    <input
+                      type="text"
+                      name={`destination${index}`}
+                      placeholder="Destination City"
+                      className="search__input"
+                      autoComplete="off"
+                      onClick={() => {
+                        setDestinationModalIsOpen(true);
+                        setCurrentDestinationIndex(index);
+                      }}
+                      value={destination.city.lat !== 0 && destination.city.lng !== 0 ? `Lat: ${destination.city.lat}, Lng: ${destination.city.lng}` : ""}
+                    />
+                    <button type="button" onClick={() => removeDestination(index)}>Remove Destination</button>
+                    <Modal isOpen={destinationModalIsOpen && currentDestinationIndex === index} onRequestClose={() => {
+                      setDestinationModalIsOpen(false);
+                      handleLocationChange(index, { lat: destinationMarkerPosition[0], lng: destinationMarkerPosition[1] });
+                    }}>
+                      <div style={{ height: '100vh', width: '100%' }}>
+                        <MapContainer center={destinationMarkerPosition} zoom={13} style={{ height: '100%', width: '100%' }} scrollWheelZoom={false}>
+                          <MapEvents setMarkerPosition={setDestinationMarkerPosition} />
+                          <TileLayer
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                          />
+                          <Marker position={destinationMarkerPosition} icon={customMarkerIcon}>
+                            <Popup>
+                              A pretty CSS3 popup. <br /> Easily customizable.
+                            </Popup>
+                          </Marker>
+                        </MapContainer>
+                      </div>
+                    </Modal>
+                  </div>
+                ))}
+                <button type="button" onClick={addDestination}>Add Destination</button>
                 <button className="btn" onClick={(e) => onClickTrip(RouterPathEnum.MEMBER, e)}>Save my info and see other ideas</button>
                 <button className="btn" onClick={(e: React.MouseEvent) => onClickTrip(RouterPathEnum.MEMBER, e)}>See other's trip ideas</button>
               </div>
