@@ -9,11 +9,7 @@ import "leaflet/dist/leaflet.css";
 import { divIcon } from "leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
 
-const iconMarkup = renderToStaticMarkup(
-  <div>
-    <img className="plane" src={require("src/assets/plane.ico")} />
-  </div>
-);
+const iconMarkup = renderToStaticMarkup(<div> &#9752; </div>);
 const customMarkerIcon = divIcon({
   html: iconMarkup,
 });
