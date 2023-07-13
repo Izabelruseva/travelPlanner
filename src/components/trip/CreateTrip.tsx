@@ -199,13 +199,6 @@ const CreateTrip: React.FC = () => {
                   autoComplete="off"
                   onChange={handleInputChange}
                 />
-                <button type="button" className="btn" onClick={addDestination}>
-                  Add Destination
-                </button>
-
-                {uploadedImages.map((image, index) => (
-                  <img key={index} src={image} alt={`Uploaded ${index}`} />
-                ))}
                 {state.destinations.map((destination, index) => (
                   <div key={index}>
                     <input
@@ -270,6 +263,13 @@ const CreateTrip: React.FC = () => {
                       </div>
                     </Modal>
                   </div>
+                ))}
+                <button type="button" className="btn" onClick={addDestination}>
+                  Add Destination
+                </button>
+
+                {uploadedImages.map((image, index) => (
+                  <img key={index} src={image} alt={`Uploaded ${index}`} />
                 ))}
                 <input
                   type="file"
