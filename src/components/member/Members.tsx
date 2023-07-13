@@ -109,7 +109,6 @@ const Members: React.FC = () => {
             </span>
           </span>
           <span className="span-links">
-            -
             <ul className="links-all">
               {memberModelList.map((model: MemberModel, idx: number) => {
                 return (
