@@ -136,20 +136,22 @@ const Members: React.FC = () => {
             >
               <div>
                 <div className="modal-container">
-                  <p className="modal-text" id="ModalTitle">
-                    Title
-                  </p>
-                  <p className="modal-text" id="ModalDesc">
-                    Description
-                  </p>
-                  <p className="modal-text" id="budget">
-                    Budget
-                  </p>
-                  <p className="modal-text" id="fromToDate">
-                    From: To:
-                  </p>
                   <div className="modal-content">
+                    <p className="modal-text" id="ModalTitle">
+                      Title
+                    </p>
+                    <p className="modal-text" id="ModalDesc">
+                      Description
+                    </p>
+                    <p className="modal-text" id="budget">
+                      Budget
+                    </p>
+                    <p className="modal-text" id="fromToDate">
+                      From: To:
+                    </p>
+
                     <img
+                      className="modal-content-img"
                       src={require("src/assets/2.ico")}
                       alt="Instagram Post"
                     />
@@ -160,9 +162,6 @@ const Members: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <button onClick={handleCloseModal} className="btn">
-                Close{" "}
-              </button>
             </Modal>
           </span>
         </div>
