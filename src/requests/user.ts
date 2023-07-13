@@ -47,7 +47,7 @@ export async function loginUser(user: User) {
     const responseData = await response.json();
     localStorage.setItem("token", responseData.access_token);
 
-    return responseData;
+    return 200;
 }
 
 export async function getUserProfile() {
