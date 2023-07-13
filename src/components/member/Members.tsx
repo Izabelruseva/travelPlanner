@@ -126,7 +126,32 @@ const Members: React.FC = () => {
             <Modal
               isOpen={showModal}
               onRequestClose={() => setShowModal(false)}
-            ></Modal>
+            >
+              <div className="modal-container">
+                <p className="modal-text" id="ModalTitle">
+                  Title
+                </p>
+                <p className="modal-text" id="ModalDesc">
+                  Description
+                </p>
+                <p className="modal-text" id="budget">
+                  Budget
+                </p>
+                <p className="modal-text" id="from-to-date">
+                  From: To:
+                </p>
+                <div className="modal-content">
+                  <img src={require("src/assets/2.ico")} alt="Instagram Post" />
+                  <button className="close-button" onClick={handleCloseModal}>
+                    &times;
+                  </button>
+                  <button className="like-button">&#10084;</button>
+                </div>
+              </div>
+              <button onClick={handleCloseModal} className="btn">
+                Close{" "}
+              </button>
+            </Modal>
           </span>
         </div>
       </div>
