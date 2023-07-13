@@ -1,26 +1,20 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import "src/components/tripModal/tripModal.css";
 
-interface ModalProps {
-  imageUrl: string;
-  onClose: () => void;
-  onLike: () => void;
+interface ModalType {
+  children?: ReactNode;
+  isOpen: boolean;
+  toggle: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ imageUrl, onClose, onLike }) => {
+export default function Modal(props: ModalType) {
   return (
-    <div className="modal-container">
-      <div className="modal-content">
-        <img src={imageUrl} alt="Instagram Post" />
-        <button className="close-button" onClick={onClose}>
-          &times;
-        </button>
-        <button className="like-button" onClick={onLike}>
-          &#10084;
-        </button>
-      </div>
-    </div>
+    <>
+      {props.isOpen && (
+        <div className="modal-overlay" onClick={props.toggle}>
+          <div className="modal-box">{props.children}</div>
+        </div>
+      )}
+    </>
   );
-};
-
-export default Modal;
+}

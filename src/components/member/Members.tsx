@@ -3,36 +3,29 @@ import { useLocation } from "react-router-dom";
 import MemberModel from "../../models/MemberModel";
 import { Link, Routes, Route } from "react-router-dom";
 import { RouterPathEnum } from "../../enums/RouterPathEnum";
-import Modal from "src/components/tripModal/tripModal";
+import Member from "./Member";
 import "src/components/member/member.css";
 import { getUserProfile } from "src/requests/user";
+import Modal from "react-modal";
 
 interface IState {
-  imageUrl: string;
-  onClose: () => void;
-  onLike: () => void;
+  memberModelList: MemberModel[];
+  firstName: string | null;
 }
+
 const Members: React.FC = () => {
   const [showModal, setShowModal] = React.useState(false);
-
+  const location = useLocation();
+  const [state, setState] = React.useState<IState>({
+    memberModelList: [],
+    firstName: null,
+  });
   const handleButtonClick = () => {
     setShowModal(true);
   };
-
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
-  const handleLike = () => {
-    // Handle the like button click event here
-  };
-
-  // const Members: React.FC = () => {
-  //   const location = useLocation();
-  //   const [state, setState] = React.useState<IState>({
-  //     memberModelList: [],
-  //     firstName: null,
-  //   });
 
   React.useEffect(() => {
     const fetchUserProfile = async () => {
@@ -127,18 +120,13 @@ const Members: React.FC = () => {
                 element={<Member memberModel={getMemberModelFromUrl()} />}
               />
             </Routes>
-            <div>
-              <button onClick={handleButtonClick} className="btn">
-                show modal
-              </button>
-              {showModal && (
-                <Modal
-                  imageUrl="src/assets/1.ico"
-                  onClose={handleCloseModal}
-                  onLike={handleLike}
-                />
-              )}
-            </div>
+            <button onClick={handleButtonClick} className="btn">
+              show
+            </button>
+            <Modal
+              isOpen={showModal}
+              onRequestClose={() => setShowModal(false)}
+            ></Modal>
           </span>
         </div>
       </div>
