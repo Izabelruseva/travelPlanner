@@ -4,12 +4,12 @@ import { cFetch } from "./interceptor";
 
 export interface Trip {
     destinations?: Destination[];
-    title: string;
-    description: string;
-    startDate: string;
-    endDate: string;
+    title?: string;
+    description?: string;
+    startDate?: string;
+    endDate?: string;
     images?: Image[];
-    budget: number;
+    budget?: number;
 }
 
 export async function createTrip(trip: Trip) {

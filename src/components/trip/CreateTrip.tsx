@@ -1,25 +1,29 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 import { RouterPathEnum } from "src/enums/RouterPathEnum";
 import "src/components/trip/style.css";
 import { Trip, createTrip } from "src/requests/trip";
+import Modal from 'react-modal';
 
 interface ITrip {
   title: string;
-  fromCity: string;
-  toCity: string;
+  fromCity: { lat: number, lng: number };
+  toCity: { lat: number, lng: number };
   startDate: string;
   endDate: string;
   budget: number;
   description: string;
 }
 
+
 const CreateTrip: React.FC = () => {
   const navigate = useNavigate();
+  const [modalIsOpen, setModalIsOpen] = React.useState(false);
   const [state, setState] = React.useState<ITrip>({
     title: "",
-    fromCity: "",
-    toCity: "",
+    fromCity: { lat: 0, lng: 0 },
+    toCity: { lat: 0, lng: 0 },
     startDate: "",
     endDate: "",
     budget: 0,
@@ -31,6 +35,13 @@ const CreateTrip: React.FC = () => {
     setState((prevState) => ({
       ...prevState,
       [name as keyof ITrip]: value,
+    }));
+  };
+
+  const handleLocationChange = (name: 'fromCity' | 'toCity', location: { lat: number, lng: number }) => {
+    setState((prevState) => ({
+      ...prevState,
+      [name]: location,
     }));
   };
 
@@ -56,9 +67,21 @@ const CreateTrip: React.FC = () => {
             <form data-tab="search-1" className="search">
               <div className="search_dest">
                 <label className="search__label">Choose your destination and preferences</label>
-                <input type="text" name="title" placeholder="Trip To Dubai" className="search__input " autoComplete="off" onChange={handleInputChange} />
-                <input type="text" name="fromCity" placeholder="From: city🏡" className="search__input " autoComplete="off" onChange={handleInputChange} />
-                <input type="text" name="toCity" placeholder="To: city🚩" className="search__input " autoComplete="off" onChange={handleInputChange} />
+                <input type="text" name="title" placeholder="Trip To Dubai" className="search__input " autoComplete="off" onChange={handleInputChange} onClick={() => setModalIsOpen(true)} />
+
+                <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+                  <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+                    <TileLayer
+                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <Marker position={[51.505, -0.09]}>
+                      <Popup>
+                        A pretty CSS3 popup. <br /> Easily customizable.
+                      </Popup>
+                    </Marker>
+                  </MapContainer>
+                </Modal>
                 <input type="date" name="startDate" placeholder="Start date" className="search__input " autoComplete="on" onChange={handleInputChange} />
                 <input type="date" name="endDate" placeholder="End date" className="search__input " autoComplete="on" onChange={handleInputChange} />
                 <input type="number" name="budget" placeholder="Max budget..." className="search__input" autoComplete="off" onChange={handleInputChange} />

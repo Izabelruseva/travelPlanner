@@ -35,7 +35,7 @@ const About: React.FC = () => {
   const onClickJoin = async (routerPathEnum: RouterPathEnum) => {
     const { firstName, lastName, email, password } = state;
 
-    console.log(await registerUser({ email, password, firstName, lastName }));
+    await registerUser({ email, password, firstName, lastName });
 
     navigate(routerPathEnum);
   };
