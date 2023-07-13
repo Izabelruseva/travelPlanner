@@ -229,7 +229,7 @@ const CreateTrip: React.FC = () => {
                       className="btn"
                       onClick={() => removeDestination(index)}
                     >
-                      Remove Destination
+                      X
                     </button>
                     <Modal
                       isOpen={
