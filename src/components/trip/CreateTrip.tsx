@@ -8,6 +8,8 @@ import Modal from "react-modal";
 import "leaflet/dist/leaflet.css";
 import { divIcon } from "leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
+import { Image } from "src/requests/image";
+import { getCountryName } from "src/requests/destination";
 
 const iconMarkup = renderToStaticMarkup(<div> &#9752; </div>);
 const customMarkerIcon = divIcon({
@@ -25,6 +27,7 @@ interface ITrip {
   endDate: string;
   budget: number;
   description: string;
+  images: Image[];
 }
 
 const CreateTrip: React.FC = () => {
@@ -37,7 +40,7 @@ const CreateTrip: React.FC = () => {
   const [currentDestinationIndex, setCurrentDestinationIndex] = React.useState<
     number | null
   >(null);
-  const [uploadedImages, setUploadedImages] = React.useState<string[]>([]);
+  const [uploadedImages, setUploadedImages] = React.useState<Image[]>([]);
   const [state, setState] = React.useState<ITrip>({
     title: "",
     destinations: [],
@@ -45,7 +48,9 @@ const CreateTrip: React.FC = () => {
     endDate: "",
     budget: 0,
     description: "",
+    images: [],
   });
+
 
   function MapEvents({
     setMarkerPosition,
@@ -77,12 +82,26 @@ const CreateTrip: React.FC = () => {
     }));
   };
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const files = Array.from(event.target.files);
-      const fileURLs = files.map((file) => URL.createObjectURL(file));
-      setUploadedImages(fileURLs);
+      const images: Image[] = await Promise.all(
+        files.map(async (file) => {
+          const base64 = await convertToBase64(file);
+          return { base64 };
+        })
+      );
+      setUploadedImages(images);
     }
+  };
+
+  const convertToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
   };
 
   const handleLocationChange = (
@@ -104,13 +123,34 @@ const CreateTrip: React.FC = () => {
     event: React.MouseEvent
   ) => {
     event.preventDefault();
-    const { title, destinations, startDate, endDate, budget, description } =
+    const { title, destinations, startDate, endDate, budget, description, images } =
       state;
 
-    createTrip({ title, description, startDate, endDate, budget: +budget });
+    const getCountryPromises = destinations.map(destination => {
+      return getCountryName(destination.city.lat.toString(), destination.city.lng.toString());
+    });
+
+    Promise.all(getCountryPromises)
+      .then(countryNames => {
+        const trip: Trip = {
+          title,
+          description,
+          startDate,
+          endDate,
+          budget: +budget,
+          images,
+          destinations: destinations.map((destination, index) => ({
+            name: "Destination to " + countryNames[index],
+            coordinates: `${destination.city.lat} ${destination.city.lng}`,
+          })),
+        };
+
+        createTrip(trip);
+      })
 
     navigate(routerPathEnum);
   };
+
 
   const addDestination = () => {
     setState((prevState) => ({
@@ -265,7 +305,7 @@ const CreateTrip: React.FC = () => {
                 </button>
 
                 {uploadedImages.map((image, index) => (
-                  <img key={index} src={image} alt={`Uploaded ${index}`} />
+                  <img key={index} src={image.base64} alt={`Uploaded ${index}`} />
                 ))}
                 <input
                   type="file"

@@ -8,7 +8,7 @@ export interface Destination {
     tripId?: number;
 }
 
-async function getCountryName(latitude: string, longitude: string) {
+export async function getCountryName(latitude: string, longitude: string) {
     const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
 
     const response = await fetch(apiUrl);
