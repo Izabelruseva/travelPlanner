@@ -1,8 +1,9 @@
-import * as React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { useState, ChangeEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import { RouterPathEnum } from "src/enums/RouterPathEnum";
 import "src/components/about/about.css";
 import { loginUser, registerUser } from "src/requests/user";
+import { notification } from 'antd';
 
 interface State {
   firstName: string;
@@ -15,8 +16,7 @@ interface State {
 
 const About: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const [state, setState] = React.useState<State>({
+  const [state, setState] = useState<State>({
     firstName: "",
     lastName: "",
     email: "",
@@ -25,27 +25,65 @@ const About: React.FC = () => {
     loginPassword: "",
   });
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.value,
-    });
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const onClickJoin = async (routerPathEnum: RouterPathEnum) => {
     const { firstName, lastName, email, password } = state;
+    const response = await registerUser({ email, password, firstName, lastName });
 
-    await registerUser({ email, password, firstName, lastName });
+    if (response === 200) {
+      navigate(routerPathEnum);
+    }
 
-    navigate(routerPathEnum);
+    if (response === 400 || 401) {
+      notification.error({
+        message: 'Login Error',
+        description: 'Invalid email or password. Please try again.',
+      });
+    } else if (response === 500) {
+      notification.error({
+        message: 'Server Error',
+        description: 'An internal server error occurred. Please try again later.',
+      });
+    } else {
+      notification.error({
+        message: 'Error',
+        description: 'An error occurred during login. Please try again.',
+      });
+    }
   };
 
   const onClickSignIn = async (routerPathEnum: RouterPathEnum) => {
     const { loginEmail, loginPassword } = state;
 
-    await loginUser({ email: loginEmail, password: loginPassword });
+    const response = await loginUser({ email: loginEmail, password: loginPassword });
 
-    navigate(routerPathEnum);
+    if (response === 200) {
+      navigate(routerPathEnum);
+    }
+
+    if (response === 400 || 401) {
+      notification.error({
+        message: 'Login Error',
+        description: 'Invalid email or password. Please try again.',
+      });
+    } else if (response === 500) {
+      notification.error({
+        message: 'Server Error',
+        description: 'An internal server error occurred. Please try again later.',
+      });
+    } else {
+      notification.error({
+        message: 'Error',
+        description: 'An error occurred during login. Please try again.',
+      });
+    }
   };
 
   return (
@@ -53,6 +91,7 @@ const About: React.FC = () => {
       <img
         className="background"
         src={require("src/assets/about-background.ico")}
+        alt="Background"
       />
       <div className="about-all">
         <h2 className="about-heading">
@@ -70,87 +109,98 @@ const About: React.FC = () => {
         <span className="login-forms">
           <form data-tab="credentials" className="credentials">
             <div>
-              <label className="name__label">What is your name?</label>
+              <label htmlFor="firstName" className="name__label">
+                What is your name?
+              </label>
               <input
                 type="text"
+                id="firstName"
                 name="firstName"
                 placeholder="First name"
                 className="input"
                 autoComplete="off"
+                value={state.firstName}
                 onChange={handleInputChange}
               />
               <input
                 type="text"
+                id="lastName"
                 name="lastName"
                 placeholder="Last name"
                 className="input"
                 autoComplete="off"
+                value={state.lastName}
                 onChange={handleInputChange}
               />
-              <label className="name__label">What is your email?</label>
+              <label htmlFor="email" className="name__label">
+                What is your email?
+              </label>
               <input
                 type="email"
+                id="email"
                 name="email"
                 placeholder="yourEmail@mail.com"
                 className="input"
                 autoComplete="off"
+                value={state.email}
                 onChange={handleInputChange}
               />
-              <label className="password-label">Choose a password</label>
+              <label htmlFor="password" className="password-label">
+                Choose a password
+              </label>
               <input
                 type="password"
+                id="password"
                 name="password"
                 placeholder="*******"
                 className="input"
                 autoComplete="off"
+                value={state.password}
                 onChange={handleInputChange}
               />
               <button
                 className="btn"
-                onClick={(e: any) => onClickJoin(RouterPathEnum.MEMBER)}
+                onClick={() => onClickJoin(RouterPathEnum.MEMBER)}
               >
                 Join me!😊
               </button>
             </div>
           </form>
-          &nbsp;&nbsp;&nbsp;&nbsp;
           <form data-tab="credentials" className="credentials">
             <div>
-              <label className="name__label">
+              <label htmlFor="loginEmail" className="name__label">
                 Already have an account? Sign in:
               </label>
               <input
                 type="email"
+                id="loginEmail"
                 name="loginEmail"
                 placeholder="yourEmail@mail.com"
                 className="input"
                 autoComplete="off"
+                value={state.loginEmail}
                 onChange={handleInputChange}
               />
               <input
                 type="password"
+                id="loginPassword"
                 name="loginPassword"
                 placeholder="*******"
                 className="input"
                 autoComplete="off"
+                value={state.loginPassword}
                 onChange={handleInputChange}
               />
               <button
                 className="btn"
-                onClick={(e: any) =>
-                  onClickSignIn(RouterPathEnum.MEMBER)
-                }
+                onClick={() => onClickSignIn(RouterPathEnum.MEMBER)}
               >
                 Sign in!😎
               </button>
             </div>
           </form>
-          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-          <button
-            className="btn"
-            onClick={(e: any) => history.back()}
-          >
-            Go to home page to know more about us✈
+          <button className="btn" onClick={() => window.history.back()}>
+            Go to the home page to know more about us✈
           </button>
         </span>
       </div>
@@ -158,4 +208,4 @@ const About: React.FC = () => {
   );
 };
 
-export default About;
+export default About; 
