@@ -160,7 +160,7 @@ const About: React.FC = () => {
               />
               <button
                 className="btn"
-                onClick={() => onClickJoin(RouterPathEnum.MEMBER)}
+                onClick={() => onClickJoin(RouterPathEnum.TRIPS)}
               >
                 Join me!😊
               </button>
@@ -193,7 +193,7 @@ const About: React.FC = () => {
               />
               <button
                 className="btn"
-                onClick={() => onClickSignIn(RouterPathEnum.MEMBER)}
+                onClick={() => onClickSignIn(RouterPathEnum.TRIPS)}
               >
                 Sign in!😎
               </button>

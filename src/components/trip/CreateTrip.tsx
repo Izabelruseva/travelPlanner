@@ -318,14 +318,14 @@ const CreateTrip: React.FC = () => {
 
                 <button
                   className="btn"
-                  onClick={(e) => onClickTrip(RouterPathEnum.MEMBER, e)}
+                  onClick={(e) => onClickTrip(RouterPathEnum.TRIPS, e)}
                 >
                   Save my info and see other ideas
                 </button>
                 <button
                   className="btn"
                   onClick={(e: React.MouseEvent) =>
-                    onClickTrip(RouterPathEnum.MEMBER, e)
+                    onClickTrip(RouterPathEnum.TRIPS, e)
                   }
                 >
                   See other's trip ideas

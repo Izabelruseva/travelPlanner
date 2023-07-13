@@ -1,26 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import MemberModel from "../../models/MemberModel";
-import { Link } from "react-router-dom";
 import { RouterPathEnum } from "../../enums/RouterPathEnum";
 import { getUserProfile } from "src/requests/user";
 import Modal from "react-modal";
-import "../../components/member/member.css";
+import "../../components/trip/trip.css";
+import { getAllTrips } from "src/requests/trip";
+import { TripModel } from "src/models/TripModel";
 
-interface Trip {
-  modalTitle: string;
-  modalDesc: string;
-  budget: string;
-  startDate: string;
-  endDate: string;
-}
 
-const Members: React.FC = () => {
+const Trips: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
-  const [selectedTrip, setSelectedTrip] = useState<Trip | null>(null);
+  const [selectedTrip, setSelectedTrip] = useState<TripModel | null>(null);
   const location = useLocation();
   const [firstName, setFirstName] = useState<string | null>(null);
-  const [memberModelList, setMemberModelList] = useState<MemberModel[]>([]);
+  const [tripList, setTripList] = useState<TripModel[]>([]);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -32,27 +25,21 @@ const Members: React.FC = () => {
       }
     };
 
-    const makeSampleMemberModels = (): MemberModel[] => {
-      return [
-        new MemberModel(1, "Trip to Varna"),
-        new MemberModel(2, "Trip to Stara Zagora"),
-        new MemberModel(3, "Trip to Ruse")
-      ];
+    const fetchTrips = async () => {
+      try {
+        const trips = await getAllTrips();
+        setTripList(trips);
+      } catch (error) {
+        console.error("Failed to fetch trips:", error);
+      }
     };
 
-    setMemberModelList(makeSampleMemberModels());
     fetchUserProfile();
+    fetchTrips();
   }, []);
 
-  const handleButtonClick = (trip: MemberModel) => {
-    const selectedTripData: Trip = {
-      modalTitle: trip.getName(),
-      modalDesc: "Description of " + trip.getName(),
-      budget: "$1000",
-      startDate: "10/11/2023",
-      endDate: "23/11/2032"
-    };
-    setSelectedTrip(selectedTripData);
+  const handleButtonClick = (trip: TripModel) => {
+    setSelectedTrip(trip);
     setShowModal(true);
   };
 
@@ -60,30 +47,30 @@ const Members: React.FC = () => {
     setShowModal(false);
   };
 
-  const getMemberModelFromUrl = (): MemberModel | null => {
+  const getTripFromUrl = (): TripModel | null => {
     const strId: string = location.pathname.split(
-      RouterPathEnum.MEMBER + "/"
+      RouterPathEnum.TRIPS + "/"
     )[1];
-    return getMemberModelById(Number(strId));
+    return getTripById(Number(strId));
   };
 
-  const getMemberModelById = (nId: number): MemberModel | null => {
-    return memberModelList.find((model) => model.getId() === nId) || null;
+  const getTripById = (nId: number): TripModel | null => {
+    return tripList.find((trip) => trip._id === nId) || null;
   };
 
   return (
-    <div className="members-page">
-      <img className="background" src={require("src/assets/member-background.ico")} />
+    <div className="trips-page">
+      <img className="background" src={require("src/assets/trip-background.ico")} />
       <div className="welcome-message">
         Welcome back, {firstName ? firstName : "Loading..."}
       </div>
 
-      <div className="members-all">
-        <h2 className="members-heading">
+      <div className="trips-all">
+        <h2 className="trips-heading">
           You’re always a short detour from an Extraordinary Place
         </h2>
-        <span className="members-span">
-          <p className="members-text">
+        <span className="trips-span">
+          <p className="trips-text">
             Our collection of more than 300 Extraordinary Places will take your trip to the next level.
             Look for the illustrations on our maps and read our takes on what make these places so special.
             We’ve been there, and we think you should go, too.
@@ -99,17 +86,17 @@ const Members: React.FC = () => {
         </span>
 
         <span className="span-img">
-          {memberModelList.map((memberModel) => (
+          {tripList.map((trip) => (
             <button
-              key={memberModel.getId()}
-              onClick={() => handleButtonClick(memberModel)}
+              key={trip._id}
+              onClick={() => handleButtonClick(trip)}
               className="pic-btn"
             >
-              <p className="members-text">{memberModel.getName()}</p>
+              <p className="trips-text">{trip._title}</p>
               <img
                 className="pics"
                 src={require("src/assets/about-background.ico")}
-                alt={memberModel.getName()}
+                alt={trip._title}
               />
             </button>
           ))}
@@ -118,16 +105,16 @@ const Members: React.FC = () => {
             <div className="modal-container">
               <div className="modal-content">
                 <p className="modal-text" id="ModalTitle">
-                  {selectedTrip?.modalTitle}
+                  {selectedTrip?._title}
                 </p>
                 <p className="modal-text" id="ModalDesc">
-                  {selectedTrip?.modalDesc}
+                  {selectedTrip?._description}
                 </p>
                 <p className="modal-text" id="budget">
-                  {selectedTrip?.budget}
+                  {selectedTrip?._budget}
                 </p>
                 <p className="modal-text" id="fromToDate">
-                  From: {selectedTrip?.startDate} - {selectedTrip?.endDate}
+                  From: {selectedTrip?._startDate} - {selectedTrip?._endDate}
                 </p>
 
                 <img
@@ -148,4 +135,4 @@ const Members: React.FC = () => {
   );
 };
 
-export default Members;
+export default Trips;

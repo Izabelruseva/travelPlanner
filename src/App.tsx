@@ -12,7 +12,7 @@ import About from "./components/about/About";
 import HeaderSmall from "./components/header/HeaderSmall";
 import CreateTrip from "./components/trip/CreateTrip";
 import { RouterPathEnum } from "./enums/RouterPathEnum";
-import Members from "./components/member/Members";
+import Members from "./components/trip/TripList";
 import { getUserProfile } from "./requests/user";
 
 interface IState {
@@ -68,7 +68,7 @@ class App extends React.Component<{}, IState> {
           <Routes>
             <Route path={RouterPathEnum.HOME} element={<Home />} />
             <Route path={RouterPathEnum.ABOUT} element={<About />} />
-            <Route path={RouterPathEnum.MEMBER} element={<Members />} />
+            <Route path={RouterPathEnum.TRIPS} element={<Members />} />
 
             {isAuthenticated ? (
               <Route

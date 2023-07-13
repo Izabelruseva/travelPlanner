@@ -11,7 +11,7 @@ class Header extends React.Component<{}, {}> {
           <p className='navHeading'>Travel Planner</p>
           <li><Link to={RouterPathEnum.HOME}>Home</Link></li>
           <li><Link to={RouterPathEnum.ABOUT}>Become a part of our team</Link></li>
-          <li><Link to={RouterPathEnum.MEMBER}>Happy clients</Link></li>
+          <li><Link to={RouterPathEnum.TRIPS}>Happy clients</Link></li>
           <li><Link to={RouterPathEnum.CREATE_TRIP}>Create Trip</Link></li>
         </ul>
       </div>
