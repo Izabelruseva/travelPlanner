@@ -5,11 +5,14 @@
   "dependencies": {
     "ajv": "8.12.0",
     "bootstrap": "5.3.0",
+    "leaflet": "^1.9.4",
     "node-fetch": "3.3.1",
-    "react": "18.2.0",
+    "react": "^18.2.0",
     "react-bootstrap": "2.8.0",
-    "react-dom": "18.2.0",
-    "react-router-dom": "6.14.1",
+    "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1",
+    "react-modal": "^3.16.1",
+    "react-router-dom": "^6.14.1",
     "react-scripts": "^5.0.1"
   },
   "scripts": {
@@ -19,9 +22,12 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.9.3",
     "@types/node": "20.4.1",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
+    "@types/react-leaflet": "^3.0.0",
+    "@types/react-modal": "^3.16.0",
     "@types/react-router-dom": "5.3.3",
     "typescript": "5.1.6"
   },
