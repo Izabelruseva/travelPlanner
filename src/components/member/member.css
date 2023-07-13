@@ -178,11 +178,10 @@
 }
 
 .pics {
-  width: 97%;
+  width: 100%;
   height: 60px;
   border-radius: 10px;
   display: flex;
-  padding-left: 30%;
   align-items: center;
 
   padding: 20 20px;

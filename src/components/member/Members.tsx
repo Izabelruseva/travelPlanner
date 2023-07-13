@@ -108,28 +108,15 @@ const Members: React.FC = () => {
               <img src={require("src/assets/4.ico")} />
             </span>
           </span>
-          <span className="span-links">
-            <ul className="links-all">
-              {memberModelList.map((model: MemberModel, idx: number) => {
-                return (
-                  <li className="links" key={idx}>
-                    <Link to={RouterPathEnum.MEMBER + "/" + idx}>
-                      {model.getName()}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-            <Routes>
-              <Route path={RouterPathEnum.MEMBER} element={<></>} />
-              <Route
-                path={RouterPathEnum.MEMBER + "/:id"}
-                element={<Member memberModel={getMemberModelFromUrl()} />}
+          <span className="span-img">
+            <button onClick={handleButtonClick} className="pic-btn">
+              <p className="members-text">trip to Varna</p>
+              <img
+                className="pics"
+                src={require("src/assets/about-background.ico")}
               />
-            </Routes>
-            <button onClick={handleButtonClick} className="btn">
-              show
             </button>
+
             <Modal
               isOpen={showModal}
               onRequestClose={() => setShowModal(false)}
@@ -152,7 +139,7 @@ const Members: React.FC = () => {
 
                     <img
                       className="modal-content-img"
-                      src={require("src/assets/2.ico")}
+                      src={require("src/assets/about-background.ico")}
                       alt="Instagram Post"
                     />
                     <button className="close-button" onClick={handleCloseModal}>

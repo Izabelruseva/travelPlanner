@@ -42,12 +42,12 @@
     -webkit-text-stroke: 1.5px black;
 }
 .info-text{
-    background: linear-gradient(to top,
-    #5aeeee 20%, 
-    #e6bc85 80%
-  );
+    background: linear-gradient(to bottom right,rgb(122, 226, 226), #ebb480);
     font-size: 1rem;
     font-weight: 200;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    
     
     
 }
