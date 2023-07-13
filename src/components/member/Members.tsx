@@ -8,14 +8,16 @@ import Modal from "react-modal";
 import "../../components/member/member.css";
 
 interface Trip {
-  ModalTitle: string;
-  ModalDesc: string;
+  modalTitle: string;
+  modalDesc: string;
   budget: string;
-  fromToDate: number;
+  startDate: string;
+  endDate: string;
 }
 
 const Members: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
+  const [selectedTrip, setSelectedTrip] = useState<Trip | null>(null);
   const location = useLocation();
   const [firstName, setFirstName] = useState<string | null>(null);
   const [memberModelList, setMemberModelList] = useState<MemberModel[]>([]);
@@ -31,16 +33,26 @@ const Members: React.FC = () => {
     };
 
     const makeSampleMemberModels = (): MemberModel[] => {
-      return ["Trip to Varna", "Trip to Stara Zagora", "Trip to Ruse"].map(
-        (trip, index) => new MemberModel(index, trip)
-      );
+      return [
+        new MemberModel(1, "Trip to Varna"),
+        new MemberModel(2, "Trip to Stara Zagora"),
+        new MemberModel(3, "Trip to Ruse")
+      ];
     };
 
     setMemberModelList(makeSampleMemberModels());
     fetchUserProfile();
   }, []);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (trip: MemberModel) => {
+    const selectedTripData: Trip = {
+      modalTitle: trip.getName(),
+      modalDesc: "Description of " + trip.getName(),
+      budget: "$1000",
+      startDate: "10/11/2023",
+      endDate: "23/11/2032"
+    };
+    setSelectedTrip(selectedTripData);
     setShowModal(true);
   };
 
@@ -49,7 +61,9 @@ const Members: React.FC = () => {
   };
 
   const getMemberModelFromUrl = (): MemberModel | null => {
-    const strId: string = location.pathname.split(RouterPathEnum.MEMBER + "/")[1];
+    const strId: string = location.pathname.split(
+      RouterPathEnum.MEMBER + "/"
+    )[1];
     return getMemberModelById(Number(strId));
   };
 
@@ -85,29 +99,35 @@ const Members: React.FC = () => {
         </span>
 
         <span className="span-img">
-          <button onClick={handleButtonClick} className="pic-btn">
-            <p className="members-text">Trip to Varna</p>
-            <img
-              className="pics"
-              src={require("src/assets/about-background.ico")}
-              alt="Trip to Varna"
-            />
-          </button>
+          {memberModelList.map((memberModel) => (
+            <button
+              key={memberModel.getId()}
+              onClick={() => handleButtonClick(memberModel)}
+              className="pic-btn"
+            >
+              <p className="members-text">{memberModel.getName()}</p>
+              <img
+                className="pics"
+                src={require("src/assets/about-background.ico")}
+                alt={memberModel.getName()}
+              />
+            </button>
+          ))}
 
           <Modal isOpen={showModal} onRequestClose={handleCloseModal}>
             <div className="modal-container">
               <div className="modal-content">
                 <p className="modal-text" id="ModalTitle">
-                  Title
+                  {selectedTrip?.modalTitle}
                 </p>
                 <p className="modal-text" id="ModalDesc">
-                  Description
+                  {selectedTrip?.modalDesc}
                 </p>
                 <p className="modal-text" id="budget">
-                  Budget
+                  {selectedTrip?.budget}
                 </p>
                 <p className="modal-text" id="fromToDate">
-                  From: To:
+                  From: {selectedTrip?.startDate} - {selectedTrip?.endDate}
                 </p>
 
                 <img
