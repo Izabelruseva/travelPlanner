@@ -3,21 +3,36 @@ import { useLocation } from "react-router-dom";
 import MemberModel from "../../models/MemberModel";
 import { Link, Routes, Route } from "react-router-dom";
 import { RouterPathEnum } from "../../enums/RouterPathEnum";
-import Member from "./Member";
+import Modal from "src/components/tripModal/tripModal";
 import "src/components/member/member.css";
 import { getUserProfile } from "src/requests/user";
 
 interface IState {
-  memberModelList: MemberModel[];
-  firstName: string | null;
+  imageUrl: string;
+  onClose: () => void;
+  onLike: () => void;
 }
-
 const Members: React.FC = () => {
-  const location = useLocation();
-  const [state, setState] = React.useState<IState>({
-    memberModelList: [],
-    firstName: null,
-  });
+  const [showModal, setShowModal] = React.useState(false);
+
+  const handleButtonClick = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleLike = () => {
+    // Handle the like button click event here
+  };
+
+  // const Members: React.FC = () => {
+  //   const location = useLocation();
+  //   const [state, setState] = React.useState<IState>({
+  //     memberModelList: [],
+  //     firstName: null,
+  //   });
 
   React.useEffect(() => {
     const fetchUserProfile = async () => {
@@ -94,7 +109,37 @@ const Members: React.FC = () => {
             </span>
           </span>
           <span className="span-links">
-            <button className="btn">show modal</button>
+            -
+            <ul className="links-all">
+              {memberModelList.map((model: MemberModel, idx: number) => {
+                return (
+                  <li className="links" key={idx}>
+                    <Link to={RouterPathEnum.MEMBER + "/" + idx}>
+                      {model.getName()}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            <Routes>
+              <Route path={RouterPathEnum.MEMBER} element={<></>} />
+              <Route
+                path={RouterPathEnum.MEMBER + "/:id"}
+                element={<Member memberModel={getMemberModelFromUrl()} />}
+              />
+            </Routes>
+            <div>
+              <button onClick={handleButtonClick} className="btn">
+                show modal
+              </button>
+              {showModal && (
+                <Modal
+                  imageUrl="src/assets/1.ico"
+                  onClose={handleCloseModal}
+                  onLike={handleLike}
+                />
+              )}
+            </div>
           </span>
         </div>
       </div>
