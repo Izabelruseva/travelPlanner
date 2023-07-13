@@ -2,7 +2,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { RouterPathEnum } from "src/enums/RouterPathEnum";
-import "src/components/trip/style.css";
+import "src/components/trip/createTrip.css";
 import { Trip, createTrip } from "src/requests/trip";
 import Modal from "react-modal";
 import "leaflet/dist/leaflet.css";

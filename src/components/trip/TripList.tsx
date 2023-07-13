@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { RouterPathEnum } from "../../enums/RouterPathEnum";
 import { getUserProfile } from "src/requests/user";
 import Modal from "react-modal";
-import "../../components/trip/trip.css";
+import "../../components/trip/tripList.css";
 import { getAllTrips } from "src/requests/trip";
 import { TripModel } from "src/models/TripModel";
 
