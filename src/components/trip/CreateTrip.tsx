@@ -11,7 +11,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { Image } from "src/requests/image";
 import { getCountryName } from "src/requests/destination";
 
-const iconMarkup = renderToStaticMarkup(<div> &#9752; </div>);
+const iconMarkup = renderToStaticMarkup(<div> &#9733; </div>);
 const customMarkerIcon = divIcon({
   html: iconMarkup,
 });
@@ -258,7 +258,7 @@ const CreateTrip: React.FC = () => {
                       className="close-button"
                       onClick={() => removeDestination(index)}
                     >
-                      X
+                      remove
                     </button>
                     <Modal
                       isOpen={
