@@ -114,6 +114,7 @@ const CreateTrip: React.FC = () => {
                           </Popup>
                         </Marker>
                       </MapContainer>
+                      <button className="btn">x</button>
                     </div>
                   </div>
                 </Modal>
