@@ -4,19 +4,7 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 import { RouterPathEnum } from "src/enums/RouterPathEnum";
 import "src/components/trip/style.css";
 import { Trip, createTrip } from "src/requests/trip";
-import Modal from 'react-modal';
-import 'leaflet/dist/leaflet.css';
-import { divIcon } from "leaflet";
-import { renderToStaticMarkup } from "react-dom/server";
-
-const iconMarkup = renderToStaticMarkup(
-  <div>
-    Test
-  </div>
-);
-const customMarkerIcon = divIcon({
-  html: iconMarkup
-});
+import Modal from "react-modal";
 
 interface ITrip {
   title: string;
@@ -120,52 +108,29 @@ const CreateTrip: React.FC = () => {
                   onClick={() => setFromCityModalIsOpen(true)}
                   value={state.fromCity.lat !== 0 && state.fromCity.lng !== 0 ? `Lat: ${state.fromCity.lat}, Lng: ${state.fromCity.lng}` : ""}
                 />
-                <Modal isOpen={fromCityModalIsOpen} onRequestClose={() => {
-                  setFromCityModalIsOpen(false);
-                  handleLocationChange('fromCity', { lat: fromCityMarkerPosition[0], lng: fromCityMarkerPosition[1] });
-                }}>
-                  <div style={{ height: '100vh', width: '100%' }}>
-                    <MapContainer center={fromCityMarkerPosition} zoom={13} style={{ height: '100%', width: '100%' }} scrollWheelZoom={false}>
-                      <MapEvents setMarkerPosition={setFromCityMarkerPosition} />
-                      <TileLayer
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                      />
-                      <Marker position={fromCityMarkerPosition} icon={customMarkerIcon}>
-                        <Popup>
-                          A pretty CSS3 popup. <br /> Easily customizable.
-                        </Popup>
-                      </Marker>
-                    </MapContainer>
-                  </div>
-                </Modal>
-                <input
-                  type="text"
-                  name="toCity"
-                  placeholder="To City"
-                  className="search__input"
-                  autoComplete="off"
-                  onChange={handleInputChange}
-                  onClick={() => setToCityModalIsOpen(true)}
-                  value={state.toCity.lat !== 0 && state.toCity.lng !== 0 ? `Lat: ${state.toCity.lat}, Lng: ${state.toCity.lng}` : ""}
-                />
-                <Modal isOpen={toCityModalIsOpen} onRequestClose={() => {
-                  setToCityModalIsOpen(false);
-                  handleLocationChange('toCity', { lat: toCityMarkerPosition[0], lng: toCityMarkerPosition[1] });
-                }}>
-                  <div style={{ height: '100vh', width: '100%' }}>
-                    <MapContainer center={toCityMarkerPosition} zoom={13} style={{ height: '100%', width: '100%' }} scrollWheelZoom={false}>
-                      <MapEvents setMarkerPosition={setToCityMarkerPosition} />
-                      <TileLayer
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                      />
-                      <Marker position={toCityMarkerPosition} icon={customMarkerIcon}>
-                        <Popup>
-                          A pretty CSS3 popup. <br /> Easily customizable.
-                        </Popup>
-                      </Marker>
-                    </MapContainer>
+
+                <Modal
+                  isOpen={modalIsOpen}
+                  onRequestClose={() => setModalIsOpen(false)}
+                >
+                  <div className="modal-container">
+                    <div className="modal-content">
+                      <MapContainer
+                        center={[51.505, -0.09]}
+                        zoom={13}
+                        scrollWheelZoom={false}
+                      >
+                        <TileLayer
+                          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        <Marker position={[51.505, -0.09]}>
+                          <Popup>
+                            A pretty CSS3 popup. <br /> Easily customizable.
+                          </Popup>
+                        </Marker>
+                      </MapContainer>
+                    </div>
                   </div>
                 </Modal>
                 <input

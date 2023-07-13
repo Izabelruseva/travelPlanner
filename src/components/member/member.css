@@ -217,11 +217,12 @@
 
 .modal-content img {
     display: block;
-    width: 80%;
-    height: auto;
-    object-fit: cover;
+    width: 70%;
+    height: 50%;
+    object-fit: contain;
     border-radius: 5px 5px 0 0;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 6px 6px 12px #dd9acc,
+    -6px -6px 12px #5c66eb;
   }
   .close-button {
     position: absolute;
@@ -234,6 +235,11 @@
     cursor: pointer;
     z-index: 999;
     transition: transform 0.3s ease;
+    box-shadow: 6px 6px 12px #dd9acc,
+    -6px -6px 12px #5c66eb;
+    width: 2em;
+    height: 2rem;
+    border-radius: 30em;
   }
   .close-button:hover {
     transform: rotate(180deg);
@@ -248,6 +254,12 @@
     font-size: 20px;
     cursor: pointer;
     animation: fadeIn 0.3s ease;
+    transition: transform 0.3s ease;
+    box-shadow: 6px 6px 12px #dd9acc,
+    -6px -6px 12px #5c66eb;
+    width: 2em;
+    height: 2rem;
+    border-radius: 30em;
   }
   .like-button:hover {
     transform: rotate(180deg);
