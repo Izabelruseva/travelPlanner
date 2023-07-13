@@ -1,5 +1,11 @@
 import * as React from "react";
-import { BrowserRouter, Route, Routes, Navigate, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import Header from "./components/header/Header";
 import Home from "./components/Home";
 import About from "./components/about/About";
@@ -46,8 +52,6 @@ class App extends React.Component<{}, IState> {
 
       if (userProfile !== 0) {
         this.setState({ isAuthenticated: true });
-      } else {
-        this.setState({ isAuthenticated: false });
       }
     } catch (error) {
       console.error("Error checking authentication:", error);
@@ -56,10 +60,6 @@ class App extends React.Component<{}, IState> {
 
   public render() {
     const { isAuthenticated } = this.state;
-
-    if (isAuthenticated === null) {
-      return <div>Loading...</div>;
-    }
 
     return (
       <BrowserRouter>
@@ -71,7 +71,10 @@ class App extends React.Component<{}, IState> {
             <Route path={RouterPathEnum.MEMBER} element={<Members />} />
 
             {isAuthenticated ? (
-              <Route path={RouterPathEnum.CREATE_TRIP} element={<CreateTrip />} />
+              <Route
+                path={RouterPathEnum.CREATE_TRIP}
+                element={<CreateTrip />}
+              />
             ) : (
               <Route
                 path={RouterPathEnum.CREATE_TRIP}

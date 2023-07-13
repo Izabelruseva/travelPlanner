@@ -1,25 +1,25 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { RouterPathEnum } from "src/enums/RouterPathEnum";
 import "src/components/trip/style.css";
 import { Trip, createTrip } from "src/requests/trip";
-import Modal from 'react-modal';
-import 'leaflet/dist/leaflet.css';
+import Modal from "react-modal";
+import "leaflet/dist/leaflet.css";
 import { divIcon } from "leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
 
 const iconMarkup = renderToStaticMarkup(
   <div>
-    Test
+    <img className="plane" src={require("src/assets/plane.ico")} />
   </div>
 );
 const customMarkerIcon = divIcon({
-  html: iconMarkup
+  html: iconMarkup,
 });
 
 interface IDestination {
-  city: { lat: number, lng: number };
+  city: { lat: number; lng: number };
 }
 
 interface ITrip {
@@ -34,9 +34,13 @@ interface ITrip {
 const CreateTrip: React.FC = () => {
   const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
-  const [destinationModalIsOpen, setDestinationModalIsOpen] = React.useState(false);
-  const [destinationMarkerPosition, setDestinationMarkerPosition] = React.useState<[number, number]>([51.505, -0.09]);
-  const [currentDestinationIndex, setCurrentDestinationIndex] = React.useState<number | null>(null);
+  const [destinationModalIsOpen, setDestinationModalIsOpen] =
+    React.useState(false);
+  const [destinationMarkerPosition, setDestinationMarkerPosition] =
+    React.useState<[number, number]>([51.505, -0.09]);
+  const [currentDestinationIndex, setCurrentDestinationIndex] = React.useState<
+    number | null
+  >(null);
   const [uploadedImages, setUploadedImages] = React.useState<string[]>([]);
   const [state, setState] = React.useState<ITrip>({
     title: "",
@@ -47,7 +51,11 @@ const CreateTrip: React.FC = () => {
     description: "",
   });
 
-  function MapEvents({ setMarkerPosition }: { setMarkerPosition: (pos: [number, number]) => void }) {
+  function MapEvents({
+    setMarkerPosition,
+  }: {
+    setMarkerPosition: (pos: [number, number]) => void;
+  }) {
     const map = useMap();
 
     React.useEffect(() => {
@@ -55,10 +63,10 @@ const CreateTrip: React.FC = () => {
         setMarkerPosition([e.latlng.lat, e.latlng.lng]);
       };
 
-      map.on('click', handleClick);
+      map.on("click", handleClick);
 
       return () => {
-        map.off('click', handleClick);
+        map.off("click", handleClick);
       };
     }, [map, setMarkerPosition]);
 
@@ -76,12 +84,15 @@ const CreateTrip: React.FC = () => {
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const files = Array.from(event.target.files);
-      const fileURLs = files.map(file => URL.createObjectURL(file));
+      const fileURLs = files.map((file) => URL.createObjectURL(file));
       setUploadedImages(fileURLs);
     }
   };
 
-  const handleLocationChange = (index: number, location: { lat: number, lng: number }) => {
+  const handleLocationChange = (
+    index: number,
+    location: { lat: number; lng: number }
+  ) => {
     setState((prevState) => {
       const newDestinations = [...prevState.destinations];
       newDestinations[index] = { city: location };
@@ -92,9 +103,13 @@ const CreateTrip: React.FC = () => {
     });
   };
 
-  const onClickTrip = (routerPathEnum: RouterPathEnum, event: React.MouseEvent) => {
+  const onClickTrip = (
+    routerPathEnum: RouterPathEnum,
+    event: React.MouseEvent
+  ) => {
     event.preventDefault();
-    const { title, destinations, startDate, endDate, budget, description } = state;
+    const { title, destinations, startDate, endDate, budget, description } =
+      state;
 
     createTrip({ title, description, startDate, endDate, budget: +budget });
 
@@ -102,14 +117,14 @@ const CreateTrip: React.FC = () => {
   };
 
   const addDestination = () => {
-    setState(prevState => ({
+    setState((prevState) => ({
       ...prevState,
       destinations: [...prevState.destinations, { city: { lat: 0, lng: 0 } }],
     }));
   };
 
   const removeDestination = (index: number) => {
-    setState(prevState => {
+    setState((prevState) => {
       const newDestinations = [...prevState.destinations];
       newDestinations.splice(index, 1);
       return {
@@ -122,16 +137,26 @@ const CreateTrip: React.FC = () => {
   return (
     <>
       <div className="trip-page">
-        <img className="background" src={require("src/assets/trip-background.ico")} />
+        <img
+          className="background"
+          src={require("src/assets/trip-background.ico")}
+        />
         <div className="trip-all">
           <h1 className="trip-heading">We plan you travel</h1>
           <p className="trip-info">
-            We understand that each traveler is unique, with different preferences, interests, and budgets. That's why we take pride in offering a personalized approach to travel planning. Whether you're seeking a luxurious beach getaway, an adrenaline-fueled adventure, or a cultural immersion, we are here to curate an experience that aligns with your aspirations.
+            We understand that each traveler is unique, with different
+            preferences, interests, and budgets. That's why we take pride in
+            offering a personalized approach to travel planning. Whether you're
+            seeking a luxurious beach getaway, an adrenaline-fueled adventure,
+            or a cultural immersion, we are here to curate an experience that
+            aligns with your aspirations.
           </p>
           <span className="trip-text-span">
             <form data-tab="search-1" className="search">
               <div className="search_dest">
-                <label className="search__label">Choose your destination and preferences</label>
+                <label className="search__label">
+                  Choose your destination and preferences
+                </label>
                 <input
                   type="text"
                   name="title"
@@ -174,13 +199,10 @@ const CreateTrip: React.FC = () => {
                   autoComplete="off"
                   onChange={handleInputChange}
                 />
-                <input
-                  type="file"
-                  name="image"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  multiple
-                />
+                <button type="button" className="btn" onClick={addDestination}>
+                  Add Destination
+                </button>
+
                 {uploadedImages.map((image, index) => (
                   <img key={index} src={image} alt={`Uploaded ${index}`} />
                 ))}
@@ -196,21 +218,50 @@ const CreateTrip: React.FC = () => {
                         setDestinationModalIsOpen(true);
                         setCurrentDestinationIndex(index);
                       }}
-                      value={destination.city.lat !== 0 && destination.city.lng !== 0 ? `Lat: ${destination.city.lat}, Lng: ${destination.city.lng}` : ""}
+                      value={
+                        destination.city.lat !== 0 && destination.city.lng !== 0
+                          ? `Lat: ${destination.city.lat}, Lng: ${destination.city.lng}`
+                          : ""
+                      }
                     />
-                    <button type="button" onClick={() => removeDestination(index)}>Remove Destination</button>
-                    <Modal isOpen={destinationModalIsOpen && currentDestinationIndex === index} onRequestClose={() => {
-                      setDestinationModalIsOpen(false);
-                      handleLocationChange(index, { lat: destinationMarkerPosition[0], lng: destinationMarkerPosition[1] });
-                    }}>
-                      <div style={{ height: '100vh', width: '100%' }}>
-                        <MapContainer center={destinationMarkerPosition} zoom={13} style={{ height: '100%', width: '100%' }} scrollWheelZoom={false}>
-                          <MapEvents setMarkerPosition={setDestinationMarkerPosition} />
+                    <button
+                      type="button"
+                      className="btn"
+                      onClick={() => removeDestination(index)}
+                    >
+                      Remove Destination
+                    </button>
+                    <Modal
+                      isOpen={
+                        destinationModalIsOpen &&
+                        currentDestinationIndex === index
+                      }
+                      onRequestClose={() => {
+                        setDestinationModalIsOpen(false);
+                        handleLocationChange(index, {
+                          lat: destinationMarkerPosition[0],
+                          lng: destinationMarkerPosition[1],
+                        });
+                      }}
+                    >
+                      <div style={{ height: "100vh", width: "100%" }}>
+                        <MapContainer
+                          center={destinationMarkerPosition}
+                          zoom={13}
+                          style={{ height: "100%", width: "100%" }}
+                          scrollWheelZoom={false}
+                        >
+                          <MapEvents
+                            setMarkerPosition={setDestinationMarkerPosition}
+                          />
                           <TileLayer
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                           />
-                          <Marker position={destinationMarkerPosition} icon={customMarkerIcon}>
+                          <Marker
+                            position={destinationMarkerPosition}
+                            icon={customMarkerIcon}
+                          >
                             <Popup>
                               A pretty CSS3 popup. <br /> Easily customizable.
                             </Popup>
@@ -220,9 +271,29 @@ const CreateTrip: React.FC = () => {
                     </Modal>
                   </div>
                 ))}
-                <button type="button" onClick={addDestination}>Add Destination</button>
-                <button className="btn" onClick={(e) => onClickTrip(RouterPathEnum.MEMBER, e)}>Save my info and see other ideas</button>
-                <button className="btn" onClick={(e: React.MouseEvent) => onClickTrip(RouterPathEnum.MEMBER, e)}>See other's trip ideas</button>
+                <input
+                  type="file"
+                  name="image"
+                  className="search__input"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  multiple
+                />
+
+                <button
+                  className="btn"
+                  onClick={(e) => onClickTrip(RouterPathEnum.MEMBER, e)}
+                >
+                  Save my info and see other ideas
+                </button>
+                <button
+                  className="btn"
+                  onClick={(e: React.MouseEvent) =>
+                    onClickTrip(RouterPathEnum.MEMBER, e)
+                  }
+                >
+                  See other's trip ideas
+                </button>
               </div>
             </form>
           </span>
