@@ -39,7 +39,7 @@ const Home: React.FC = () => {
             &nbsp;&nbsp;&nbsp;&nbsp;
             <button
               className="btn"
-              onClick={() => onClickMove(RouterPathEnum.MEMBER)}
+              onClick={() => onClickMove(RouterPathEnum.TRIPS)}
             >
               See trip ideas
             </button>

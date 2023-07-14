@@ -32,8 +32,27 @@ export async function createTrip(trip: Trip) {
     return responseData;
 }
 
-export async function getAllTrips(userId: number) {
+export async function getTrips(userId: number) {
     const endpoint = `/api/trips/${userId}`;
+
+    const response = await cFetch(endpoint, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    if (!response.ok) {
+        response.status;
+    }
+
+    const responseData = await response.json();
+
+    return responseData;
+}
+
+export async function getAllTrips() {
+    const endpoint = `/api/trips/`;
 
     const response = await cFetch(endpoint, {
         method: 'GET',
