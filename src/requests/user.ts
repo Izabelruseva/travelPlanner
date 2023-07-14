@@ -24,6 +24,8 @@ export async function registerUser(user: User) {
 
     const responseData = await response.json();
 
+    console.log(responseData);
+
     localStorage.setItem("token", responseData.access_token);
 
     return responseData;

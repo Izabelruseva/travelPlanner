@@ -80,7 +80,7 @@
     align-items: center;
     background-color: #f8f8f8;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     font-size: 1.2rem;
     font-weight: bold;
@@ -92,7 +92,7 @@
     align-items: center;
     background-color: #f8f8f8;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 1.2rem;
     font-weight: bold;
     color: black;
@@ -113,7 +113,7 @@ input[placeholder] {
   opacity: 1;
   border: none;
   font-size: smaller;
-  border-radius: 5px;
+  border-radius: 10px;
   box-sizing: border-box;
 }
 ::placeholder {
@@ -133,10 +133,10 @@ input[placeholder] {
     display: none;
   }
 
-  .btn {
+  .btn1 {
     color: black;
-    width: 9em;
-    height: 4rem;
+    width: 10em;
+    height: 2.5em;
     border-radius: 30em;
     font-size: 15px;
     font-weight: bold;
@@ -144,15 +144,15 @@ input[placeholder] {
     position: static;
     cursor: pointer;
     overflow: hidden;
-    z-index: -1;
+    z-index: 999;
     box-shadow: 6px 6px 12px #c5c5c5,
         -6px -6px 12px #ffffff;
   
   }
-  .btn::before{
+  .btn1::before{
     content: '';
-    width: 0;
-    height: 4rem;
+    width: 10;
+    height: 2.5rem;
     border-radius: 30em;
     position: absolute;
     top: 0;
@@ -162,8 +162,8 @@ input[placeholder] {
     display: block;
     z-index: -1;
   }
-  .btn:hover::before{
-    width: 9em;
+  .btn1:hover::before{
+    width: 10em;
   
   }
 
@@ -189,10 +189,9 @@ input[placeholder] {
     padding: 20px;
     animation: zoomIn 0.3s ease;
   }
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+  .x {
+    display: inline-block;
+    margin-left: 10px;
     background-color: rgb(218, 229, 233);
     border: none;
     color: black;
@@ -202,10 +201,11 @@ input[placeholder] {
     transition: transform 0.3s ease;
     box-shadow: 6px 6px 12px #00FFFF,
     -6px -6px 12px #ffae42;
-    width: 2em;
-    height: 2rem;
+    width: 1em;
+    height: 1rem;
     border-radius: 30em;
   }
-  .close-button:hover {
+  .x:hover {
     transform: rotate(180deg);
   }
+  

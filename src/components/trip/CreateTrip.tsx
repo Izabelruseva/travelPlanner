@@ -2,7 +2,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { RouterPathEnum } from "src/enums/RouterPathEnum";
-import "src/components/trip/createTrip.css";
+import "../../components/trip/createTrip.css";
 import { Trip, createTrip } from "src/requests/trip";
 import Modal from "react-modal";
 import "leaflet/dist/leaflet.css";
@@ -11,7 +11,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { Image } from "src/requests/image";
 import { getCountryName } from "src/requests/destination";
 
-const iconMarkup = renderToStaticMarkup(<div> &#9733; </div>);
+const iconMarkup = renderToStaticMarkup(<div> 🚩 </div>);
 const customMarkerIcon = divIcon({
   html: iconMarkup,
 });
@@ -245,14 +245,7 @@ const CreateTrip: React.FC = () => {
                   onChange={handleInputChange}
                 />
                 {state.destinations.map((destination, index) => (
-                  <div key={index}>
-                    <button
-                      type="button"
-                      className="close-button"
-                      onClick={() => removeDestination(index)}
-                    >
-                      X
-                    </button>
+                  <div className="dest" key={index}>
                     <input
                       type="text"
                       name={`destination${index}`}
@@ -269,12 +262,13 @@ const CreateTrip: React.FC = () => {
                           : ""
                       }
                     />
+
                     <button
                       type="button"
-                      className="btn"
+                      className="x"
                       onClick={() => removeDestination(index)}
                     >
-                      remove
+                      X
                     </button>
                     <Modal
                       isOpen={

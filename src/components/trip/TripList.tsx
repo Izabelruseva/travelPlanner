@@ -7,7 +7,6 @@ import "../../components/trip/tripList.css";
 import { getAllTrips } from "src/requests/trip";
 import { TripModel } from "src/models/TripModel";
 
-
 const Trips: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedTrip, setSelectedTrip] = useState<TripModel | null>(null);
@@ -60,7 +59,10 @@ const Trips: React.FC = () => {
 
   return (
     <div className="trips-page">
-      <img className="background" src={require("src/assets/trip-background.ico")} />
+      <img
+        className="background"
+        src={require("src/assets/member-background.ico")}
+      />
       <div className="welcome-message">
         Welcome back, {firstName ? firstName : "Loading..."}
       </div>
@@ -71,9 +73,10 @@ const Trips: React.FC = () => {
         </h2>
         <span className="trips-span">
           <p className="trips-text">
-            Our collection of more than 300 Extraordinary Places will take your trip to the next level.
-            Look for the illustrations on our maps and read our takes on what make these places so special.
-            We’ve been there, and we think you should go, too.
+            Our collection of more than 300 Extraordinary Places will take your
+            trip to the next level. Look for the illustrations on our maps and
+            read our takes on what make these places so special. We’ve been
+            there, and we think you should go, too.
           </p>
         </span>
 
