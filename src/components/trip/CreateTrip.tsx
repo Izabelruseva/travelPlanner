@@ -10,6 +10,7 @@ import { divIcon } from "leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
 import { Image } from "src/requests/image";
 import { getCountryName } from "src/requests/destination";
+import { notification } from "antd";
 
 const iconMarkup = renderToStaticMarkup(<div> 🚩 </div>);
 const customMarkerIcon = divIcon({
@@ -40,7 +41,7 @@ const CreateTrip: React.FC = () => {
   const [currentDestinationIndex, setCurrentDestinationIndex] = React.useState<
     number | null
   >(null);
-  const [uploadedImages, setUploadedImages] = React.useState<Image[]>([]);
+  const [uploadedImages, setUploadedImages] = React.useState<File[]>([]);
   const [state, setState] = React.useState<ITrip>({
     title: "",
     destinations: [],
@@ -81,18 +82,10 @@ const CreateTrip: React.FC = () => {
     }));
   };
 
-  const handleImageUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const files = Array.from(event.target.files);
-      const images: Image[] = await Promise.all(
-        files.map(async (file) => {
-          const base64 = await convertToBase64(file);
-          return { base64 };
-        })
-      );
-      setUploadedImages(images);
+      setUploadedImages(files);
     }
   };
 
@@ -104,6 +97,25 @@ const CreateTrip: React.FC = () => {
       reader.readAsDataURL(file);
     });
   };
+
+  React.useEffect(() => {
+    const fetchImageData = async () => {
+      const images: Image[] = await Promise.all(
+        uploadedImages.map(async (file) => {
+          const base64 = await convertToBase64(file);
+          return { base64 };
+        })
+      );
+      setState((prevState) => ({
+        ...prevState,
+        images: [...prevState.images, ...images],
+      }));
+    };
+
+    if (uploadedImages.length > 0) {
+      fetchImageData();
+    }
+  }, [uploadedImages]);
 
   const handleLocationChange = (
     index: number,
@@ -141,7 +153,7 @@ const CreateTrip: React.FC = () => {
       );
     });
 
-    Promise.all(getCountryPromises).then((countryNames) => {
+    Promise.all(getCountryPromises).then(async (countryNames) => {
       const trip: Trip = {
         title,
         description,
@@ -155,10 +167,33 @@ const CreateTrip: React.FC = () => {
         })),
       };
 
-      createTrip(trip);
-    });
+      const response = await createTrip(trip);
 
-    navigate(routerPathEnum);
+      if (response === 200) {
+        notification.success({
+          message: 'Creation Successful!',
+          description: 'You successfully created a trip!'
+        })
+        navigate(routerPathEnum);
+      }
+
+      if (response === 400 || response === 401) {
+        notification.error({
+          message: 'Unauthorized!',
+          description: 'You need to be logged in to do that!',
+        });
+      } else if (response === 500) {
+        notification.error({
+          message: 'Server Error',
+          description: 'An internal server error occurred. Please try again later.',
+        });
+      } else {
+        notification.error({
+          message: 'Error',
+          description: 'An error occurred during trip creation. Please try again.',
+        });
+      }
+    });
   };
 
   const addDestination = () => {
@@ -187,7 +222,7 @@ const CreateTrip: React.FC = () => {
           src={require("src/assets/trip-background.ico")}
         />
         <div className="trip-all">
-          <h1 className="trip-heading">We plan you travel</h1>
+          <h1 className="trip-heading">We plan your travel</h1>
           <p className="trip-info">
             We understand that each traveler is unique, with different
             preferences, interests, and budgets. That's why we take pride in
@@ -314,7 +349,7 @@ const CreateTrip: React.FC = () => {
                   Add Destination
                 </button>
 
-                {uploadedImages.map((image, index) => (
+                {state.images.map((image, index) => (
                   <img
                     key={index}
                     src={image.base64}

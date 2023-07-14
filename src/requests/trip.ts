@@ -3,6 +3,7 @@ import { Image } from "./image";
 import { cFetch } from "./interceptor";
 
 export interface Trip {
+    id?: number;
     destinations?: Destination[];
     title?: string;
     description?: string;
@@ -27,9 +28,7 @@ export async function createTrip(trip: Trip) {
         response.status;
     }
 
-    const responseData = await response.json();
-
-    return responseData;
+    return 200;
 }
 
 export async function getTrips(userId: number) {
