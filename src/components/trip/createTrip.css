@@ -75,6 +75,7 @@
     margin-bottom: 20px;
   }
 .trip-text-span{
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,6 +87,7 @@
     font-weight: bold;
     color: black;
     max-height: min-content;
+    
     
 }
 .search__input {
