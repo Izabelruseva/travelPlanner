@@ -171,26 +171,28 @@ const CreateTrip: React.FC = () => {
 
       if (response === 200) {
         notification.success({
-          message: 'Creation Successful!',
-          description: 'You successfully created a trip!'
-        })
+          message: "Creation Successful!",
+          description: "You successfully created a trip!",
+        });
         navigate(routerPathEnum);
       }
 
       if (response === 400 || response === 401) {
         notification.error({
-          message: 'Unauthorized!',
-          description: 'You need to be logged in to do that!',
+          message: "Unauthorized!",
+          description: "You need to be logged in to do that!",
         });
       } else if (response === 500) {
         notification.error({
-          message: 'Server Error',
-          description: 'An internal server error occurred. Please try again later.',
+          message: "Server Error",
+          description:
+            "An internal server error occurred. Please try again later.",
         });
       } else {
         notification.error({
-          message: 'Error',
-          description: 'An error occurred during trip creation. Please try again.',
+          message: "Error",
+          description:
+            "An error occurred during trip creation. Please try again.",
         });
       }
     });
@@ -354,6 +356,7 @@ const CreateTrip: React.FC = () => {
                     key={index}
                     src={image.base64}
                     alt={`Uploaded ${index}`}
+                    className="pic-upload"
                   />
                 ))}
                 <input

@@ -209,3 +209,8 @@ input[placeholder] {
     transform: rotate(180deg);
   }
   
+  .pic-upload{
+    display: block;
+    width: 70%;
+    height: 50%;
+  }
