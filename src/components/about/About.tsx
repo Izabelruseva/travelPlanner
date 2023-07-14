@@ -38,6 +38,10 @@ const About: React.FC = () => {
     const response = await registerUser({ email, password, firstName, lastName });
 
     if (response === 200) {
+      notification.success({
+        message: 'Login Successfull',
+        description: 'You successfully logged in!'
+      })
       navigate(routerPathEnum);
     }
 
@@ -65,10 +69,14 @@ const About: React.FC = () => {
     const response = await loginUser({ email: loginEmail, password: loginPassword });
 
     if (response === 200) {
+      notification.success({
+        message: 'Registration Successfull',
+        description: 'You successfully registered!'
+      })
       navigate(routerPathEnum);
     }
 
-    if (response === 400 || 401) {
+    if (response === 400 || response === 401) {
       notification.error({
         message: 'Login Error',
         description: 'Invalid email or password. Please try again.',

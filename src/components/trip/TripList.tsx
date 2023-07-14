@@ -3,16 +3,21 @@ import { useLocation } from "react-router-dom";
 import { RouterPathEnum } from "../../enums/RouterPathEnum";
 import { getUserProfile } from "src/requests/user";
 import Modal from "react-modal";
+import "../../components/trip/tripList.css";
+import { getAllTrips, likeTrip } from "src/requests/trip";
+import { Trip } from "src/requests/trip";
+import { Image } from "src/requests/image";
+import { Destination } from "src/requests/destination";
 import "src/components/trip/tripList.css";
-import { getAllTrips } from "src/requests/trip";
-import { TripModel } from "src/models/TripModel";
+// import { getAllTrips } from "src/requests/trip";
+// import { TripModel } from "src/models/TripModel";
 
 const Trips: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
-  const [selectedTrip, setSelectedTrip] = useState<TripModel | null>(null);
+  const [selectedTrip, setSelectedTrip] = useState<Trip | null>(null);
   const location = useLocation();
   const [firstName, setFirstName] = useState<string | null>(null);
-  const [tripList, setTripList] = useState<TripModel[]>([]);
+  const [tripList, setTripList] = useState<Trip[]>([]);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -37,7 +42,7 @@ const Trips: React.FC = () => {
     fetchTrips();
   }, []);
 
-  const handleButtonClick = (trip: TripModel) => {
+  const handleButtonClick = (trip: Trip) => {
     setSelectedTrip(trip);
     setShowModal(true);
   };
@@ -46,15 +51,15 @@ const Trips: React.FC = () => {
     setShowModal(false);
   };
 
-  const getTripFromUrl = (): TripModel | null => {
+  const getTripFromUrl = (): Trip | null => {
     const strId: string = location.pathname.split(
       RouterPathEnum.TRIPS + "/"
     )[1];
     return getTripById(Number(strId));
   };
 
-  const getTripById = (nId: number): TripModel | null => {
-    return tripList.find((trip) => trip._id === nId) || null;
+  const getTripById = (nId: number): Trip | null => {
+    return tripList.find((trip) => trip.id === nId) || null;
   };
 
   return (
@@ -91,33 +96,42 @@ const Trips: React.FC = () => {
         <span className="span-img">
           {tripList.map((trip) => (
             <button
-              key={trip._id}
+              key={trip.id}
               onClick={() => handleButtonClick(trip)}
               className="pic-btn"
             >
-              <p className="trips-text">{trip._title}</p>
-              <img
-                className="pics"
-                src={require("src/assets/about-background.ico")}
-                alt={trip._title}
-              />
+              <p className="trips-text">{trip.title}</p>
+              {trip.images && trip.images.length > 0 ? (
+                <img
+                  className="pics"
+                  src={`data:image/jpeg;base64,${trip.images[0].base64}`}
+                  alt={trip.title}
+                />
+              ) : (
+                <img
+                  className="pics"
+                  src={require("src/assets/about-background.ico")}
+                  alt={trip.title}
+                />
+              )}
             </button>
           ))}
 
           <Modal isOpen={showModal} onRequestClose={handleCloseModal}>
             <div className="modal-container">
               <div className="modal-content">
+                <p>{selectedTrip?.id}</p>
                 <p className="modal-text" id="ModalTitle">
-                  {selectedTrip?._title}
+                  {selectedTrip?.title}
                 </p>
                 <p className="modal-text" id="ModalDesc">
-                  {selectedTrip?._description}
+                  {selectedTrip?.description}
                 </p>
                 <p className="modal-text" id="budget">
-                  {selectedTrip?._budget}
+                  {selectedTrip?.budget}
                 </p>
                 <p className="modal-text" id="fromToDate">
-                  From: {selectedTrip?._startDate} - {selectedTrip?._endDate}
+                  From: {selectedTrip?.startDate} - {selectedTrip?.endDate}
                 </p>
 
                 <img
@@ -128,7 +142,14 @@ const Trips: React.FC = () => {
                 <button className="close-button" onClick={handleCloseModal}>
                   &times;
                 </button>
-                <button className="like-button">&#10084;</button>
+                <button
+                  className="like-button"
+                  onClick={() =>
+                    selectedTrip && selectedTrip.id && likeTrip(selectedTrip.id)
+                  }
+                >
+                  ❤️
+                </button>
               </div>
             </div>
           </Modal>
