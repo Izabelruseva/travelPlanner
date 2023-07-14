@@ -90,6 +90,15 @@ const Trips: React.FC = () => {
             <img src={require("src/assets/4.ico")} alt="Image 4" />
           </span>
         </span>
+        <span className="trips-span">
+          <input
+            type="text"
+            name="searchbar"
+            placeholder="Search"
+            className="search__input"
+            autoComplete="on"
+          />
+        </span>
 
         <span className="span-img">
           {tripList.map((trip) => (
