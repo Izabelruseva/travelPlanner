@@ -204,6 +204,7 @@ input[placeholder] {
     width: 1em;
     height: 1rem;
     border-radius: 30em;
+    
   }
   .x:hover {
     transform: rotate(180deg);
@@ -211,6 +212,6 @@ input[placeholder] {
   
   .pic-upload{
     display: block;
-    width: 70%;
-    height: 50%;
+    width: 30%;
+    height: 30%;
   }

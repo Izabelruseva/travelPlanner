@@ -340,9 +340,9 @@
   animation: zoomIn 0.3s ease;
 }
 .searchbtn{
-    position: absolute;
-    left: 390px;
+    position: relative;
+    left: 250px;
     width: 5em;
-    bottom: 26px; 
+    bottom: 38px; 
     border-radius: 30px;
 }
