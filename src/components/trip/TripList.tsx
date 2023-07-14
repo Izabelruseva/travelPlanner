@@ -4,10 +4,8 @@ import { RouterPathEnum } from "../../enums/RouterPathEnum";
 import { getUserProfile } from "src/requests/user";
 import Modal from "react-modal";
 import "../../components/trip/tripList.css";
-import { getAllTrips, likeTrip } from "src/requests/trip";
+import { getAllTrips, likeTrip, search } from "src/requests/trip";
 import { Trip } from "src/requests/trip";
-import { Image } from "src/requests/image";
-import { Destination } from "src/requests/destination";
 import "src/components/trip/tripList.css";
 
 const Trips: React.FC = () => {
@@ -16,6 +14,8 @@ const Trips: React.FC = () => {
   const location = useLocation();
   const [firstName, setFirstName] = useState<string | null>(null);
   const [tripList, setTripList] = useState<Trip[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState<Trip[]>([]);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -39,6 +39,25 @@ const Trips: React.FC = () => {
     fetchUserProfile();
     fetchTrips();
   }, []);
+
+  useEffect(() => {
+    const fetchSearchResults = async () => {
+      if (searchTerm === "") {
+        setSearchResults(tripList);
+      } else {
+        const results = await search(searchTerm);
+        setSearchResults(results);
+      }
+    };
+
+    console.log(searchResults);
+
+    fetchSearchResults();
+  }, [searchTerm, tripList]);
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
 
   const handleButtonClick = (trip: Trip) => {
     setSelectedTrip(trip);
@@ -97,11 +116,13 @@ const Trips: React.FC = () => {
             placeholder="Search here"
             className="search__input"
             autoComplete="on"
+            value={searchTerm}
+            onChange={handleSearchChange}
           />
         </span>
 
         <span className="span-img">
-          {tripList.map((trip) => (
+          {searchResults.map((trip) => (
             <button
               key={trip.id}
               onClick={() => handleButtonClick(trip)}

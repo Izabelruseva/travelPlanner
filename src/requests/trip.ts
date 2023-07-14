@@ -126,3 +126,22 @@ export async function likeTrip(tripId: number) {
 
     return responseData;
 }
+
+export async function search(query: string) {
+    const endpoint = `/api/trips/?q=${query}&page=1&pageSize=10`
+
+    const response = await cFetch(endpoint, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    if (!response.ok) {
+        response.status;
+    }
+
+    const responseData = await response.json();
+
+    return responseData;
+}
