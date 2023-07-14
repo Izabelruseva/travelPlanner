@@ -215,7 +215,7 @@ const CreateTrip: React.FC = () => {
                     />
                     <button
                       type="button"
-                      className="close-button"
+                      className="btn"
                       onClick={() => removeDestination(index)}
                     >
                       remove
