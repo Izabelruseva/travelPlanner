@@ -94,10 +94,13 @@ const Trips: React.FC = () => {
           <input
             type="text"
             name="searchbar"
-            placeholder="Search"
+            placeholder="Search here"
             className="search__input"
             autoComplete="on"
           />
+          <button className="searchbtn" type="submit">
+            🔎
+          </button>
         </span>
 
         <span className="span-img">

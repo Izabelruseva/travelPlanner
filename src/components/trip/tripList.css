@@ -339,3 +339,10 @@
   padding: 20px;
   animation: zoomIn 0.3s ease;
 }
+.searchbtn{
+    position: absolute;
+    left: 390px;
+    width: 5em;
+    bottom: 26px; 
+    border-radius: 30px;
+}
