@@ -9,8 +9,6 @@ import { Trip } from "src/requests/trip";
 import { Image } from "src/requests/image";
 import { Destination } from "src/requests/destination";
 import "src/components/trip/tripList.css";
-// import { getAllTrips } from "src/requests/trip";
-// import { TripModel } from "src/models/TripModel";
 
 const Trips: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
