@@ -98,9 +98,6 @@ const Trips: React.FC = () => {
             className="search__input"
             autoComplete="on"
           />
-          <button className="searchbtn" type="submit">
-            🔎
-          </button>
         </span>
 
         <span className="span-img">
