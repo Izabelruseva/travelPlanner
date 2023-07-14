@@ -342,7 +342,7 @@ const CreateTrip: React.FC = () => {
                     onClickTrip(RouterPathEnum.TRIPS, e)
                   }
                 >
-                  See other's trip ideas
+                  See ideas
                 </button>
               </div>
             </form>
