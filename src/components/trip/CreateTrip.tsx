@@ -51,7 +51,6 @@ const CreateTrip: React.FC = () => {
     images: [],
   });
 
-
   function MapEvents({
     setMarkerPosition,
   }: {
@@ -82,7 +81,9 @@ const CreateTrip: React.FC = () => {
     }));
   };
 
-  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     if (event.target.files) {
       const files = Array.from(event.target.files);
       const images: Image[] = await Promise.all(
@@ -123,34 +124,42 @@ const CreateTrip: React.FC = () => {
     event: React.MouseEvent
   ) => {
     event.preventDefault();
-    const { title, destinations, startDate, endDate, budget, description, images } =
-      state;
+    const {
+      title,
+      destinations,
+      startDate,
+      endDate,
+      budget,
+      description,
+      images,
+    } = state;
 
-    const getCountryPromises = destinations.map(destination => {
-      return getCountryName(destination.city.lat.toString(), destination.city.lng.toString());
+    const getCountryPromises = destinations.map((destination) => {
+      return getCountryName(
+        destination.city.lat.toString(),
+        destination.city.lng.toString()
+      );
     });
 
-    Promise.all(getCountryPromises)
-      .then(countryNames => {
-        const trip: Trip = {
-          title,
-          description,
-          startDate,
-          endDate,
-          budget: +budget,
-          images,
-          destinations: destinations.map((destination, index) => ({
-            name: "Destination to " + countryNames[index],
-            coordinates: `${destination.city.lat} ${destination.city.lng}`,
-          })),
-        };
+    Promise.all(getCountryPromises).then((countryNames) => {
+      const trip: Trip = {
+        title,
+        description,
+        startDate,
+        endDate,
+        budget: +budget,
+        images,
+        destinations: destinations.map((destination, index) => ({
+          name: "Destination to " + countryNames[index],
+          coordinates: `${destination.city.lat} ${destination.city.lng}`,
+        })),
+      };
 
-        createTrip(trip);
-      })
+      createTrip(trip);
+    });
 
     navigate(routerPathEnum);
   };
-
 
   const addDestination = () => {
     setState((prevState) => ({
@@ -237,6 +246,13 @@ const CreateTrip: React.FC = () => {
                 />
                 {state.destinations.map((destination, index) => (
                   <div key={index}>
+                    <button
+                      type="button"
+                      className="close-button"
+                      onClick={() => removeDestination(index)}
+                    >
+                      X
+                    </button>
                     <input
                       type="text"
                       name={`destination${index}`}
@@ -305,7 +321,11 @@ const CreateTrip: React.FC = () => {
                 </button>
 
                 {uploadedImages.map((image, index) => (
-                  <img key={index} src={image.base64} alt={`Uploaded ${index}`} />
+                  <img
+                    key={index}
+                    src={image.base64}
+                    alt={`Uploaded ${index}`}
+                  />
                 ))}
                 <input
                   type="file"
