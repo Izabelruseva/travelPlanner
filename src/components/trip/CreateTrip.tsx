@@ -350,7 +350,7 @@ const CreateTrip: React.FC = () => {
                 <button type="button" className="btn" onClick={addDestination}>
                   Add Destination
                 </button>
-
+                &nbsp;
                 {state.images.map((image, index) => (
                   <img
                     key={index}
@@ -367,13 +367,14 @@ const CreateTrip: React.FC = () => {
                   onChange={handleImageUpload}
                   multiple
                 />
-
+                &nbsp;
                 <button
                   className="btn"
                   onClick={(e) => onClickTrip(RouterPathEnum.TRIPS, e)}
                 >
                   Save my info and see other ideas
                 </button>
+                &nbsp;
                 <button
                   className="btn"
                   onClick={(e: React.MouseEvent) =>
